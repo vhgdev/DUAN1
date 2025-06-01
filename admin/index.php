@@ -16,4 +16,6 @@ $ctl = $_GET['ctl'] ?? "";
 match ($ctl) {
     '' => view("admin.dashboard"),
     'listsp' => (new AdminProductController)->index(),
+    'addsp' => (new AdminProductController)->create(),
+    'storesp' => (new AdminProductController)->store(),
 };
