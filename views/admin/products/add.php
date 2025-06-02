@@ -35,7 +35,8 @@
         </div>
         <div class="mb-3">
             <label for="">Mô tả</label>
-            <textarea name="description" rows="6" id="" class="form-control"></textarea>
+            <textarea name="description" rows="6" id="" class="form-control">
+            </textarea>
         </div>
         <div class="mb-3">
             <button type="submit" class="btn btn-primary">Thêm mới</button>
