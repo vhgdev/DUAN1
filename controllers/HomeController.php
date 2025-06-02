@@ -14,4 +14,4 @@ class HomeController
 
         return view("clients.home", compact('phones', 'products', 'categories'));
     }
-    }
+}

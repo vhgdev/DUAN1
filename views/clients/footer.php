@@ -23,8 +23,8 @@
 								<h3 class="footer-title">Danh mục</h3>
 								<ul class="footer-links">
 									<li><a href="#">Khuyến mại</a></li>
-									<li><a href="#">Laptops văn phòng</a></li>
-									<li><a href="#">Laptops gaming</a></li>
+									<li><a href="#">Iphone</a></li>
+									<li><a href="#">Phụ kiện điện thoại</a></li>
 									<li><a href="#">Phụ kiện</a></li>
 								</ul>
 							</div>
