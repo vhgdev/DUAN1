@@ -1,9 +1,9 @@
 <?php
-
 //Controller điều khiển phần product trong admin
 class AdminProductController
 {
 
+    
 
     public function index()
     {
