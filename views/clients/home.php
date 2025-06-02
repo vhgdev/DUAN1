@@ -11,7 +11,7 @@
 			<!-- section title -->
 			<div class="col-md-12">
 				<div class="section-title">
-					<h3 class="title">Laptops</h3>
+					<h3 class="title">iPhone</h3>
 				</div>
 			</div>
 			<!-- /section title -->
@@ -20,26 +20,26 @@
 
 			<?php
 			// Giới hạn hiển thị 4 sản phẩm
-			$laptopsToDisplay = array_slice($laptops, 0, 4);
+			$phonesToDisplay = array_slice($phones, 0, 4);
 			?>
 			<div class="container mt-5">
 				<div class="row g-4">
-					<?php foreach ($laptopsToDisplay as $laptop) : ?>
+					<?php foreach ($phonesToDisplay as $phone) : ?>
 						<!-- Box Sản Phẩm -->
 						<div class="col-md-3">
 							<div class="product-box">
 								<div class="product-img">
-									<img src="<?= ROOT_URL_ . $laptop['image'] ?>" alt="<?= $laptop['name'] ?>" loading="lazy">
+									<img src="<?= ROOT_URL_ . $phone['image'] ?>" alt="<?= $phone['name'] ?>" loading="lazy">
 								</div>
 								<div class="product-body">
-									<a href="<?= ROOT_URL_ . '?ctl=detail&id=' . $laptop['id'] ?>">
-										<h5 class="product-name"><?= $laptop['name'] ?></h5>
+									<a href="<?= ROOT_URL_ . '?ctl=detail&id=' . $phone['id'] ?>">
+										<h5 class="product-name"><?= $phone['name'] ?></h5>
 									</a>
 									<div>
-										<span class="product-price"><?= number_format($laptop['price']) ?> ₫</span>
+										<span class="product-price"><?= number_format($phone['price']) ?> ₫</span>
 									</div>
 									<div class="product-buttons">
-										<a href="<?= ROOT_URL_ . '?ctl=detail&id=' . $laptop['id'] ?>" class="btn btn-outline-success">Chi tiết sản phẩm</a>
+										<a href="<?= ROOT_URL_ . '?ctl=detail&id=' . $phone['id'] ?>" class="btn btn-outline-success">Chi tiết sản phẩm</a>
 									</div>
 								</div>
 							</div>
