@@ -1,15 +1,16 @@
 <?php include_once ROOT_DIR . "views/admin/header.php" ?>
+
 <div>
     <form action="<?= ADMIN_URL . '?ctl=storedm' ?>" method="post" enctype="multipart/form-data">
         <div class="mb-3">
-            <label for="">Tên sản danh mục</label>
+            <label for="">Tên danh mục</label>
             <input type="text" name="cate_name" id="" class="form-control">
 
         </div>
 
         <div class="mb-3">
             <label for="">Loại sản phẩm</label> <br>
-            <input type="radio" name="type" value="1" checked id=""> Laptop
+            <input type="radio" name="type" value="1" checked id=""> Điện thoại
             <input type="radio" name="type" value="0" id=""> Phụ kiện
         </div>
 

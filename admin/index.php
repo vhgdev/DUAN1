@@ -13,8 +13,6 @@ require_once __DIR__ . "/../controllers/admin/AdminProductController.php";
 require_once __DIR__ . "/../controllers/admin/AdminCategoryController.php";
 
 
-
-
 $ctl = $_GET['ctl'] ?? "";
 
 match ($ctl) {
@@ -23,14 +21,13 @@ match ($ctl) {
     'addsp' => (new AdminProductController)->create(),
     'storesp' => (new AdminProductController)->store(),
     'editsp' => (new AdminProductController)->edit(),
-    // 'updatesp' => (new AdminProductController)->update(),
+    'updatesp' => (new AdminProductController)->update(),
     'deletesp' => (new AdminProductController)->delete(),
-    // danh mục
+
     'listdm' => (new AdminCategoryController)->index(),
     'adddm' => (new AdminCategoryController)->add(),
     'storedm' => (new AdminCategoryController)->store(),
     'editdm' => (new AdminCategoryController)->edit(),
     'updatedm' => (new AdminCategoryController)->update(),
     'deletedm' => (new AdminCategoryController)->delete(),
-    default => view('errors.404'),
 };

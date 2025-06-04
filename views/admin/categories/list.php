@@ -21,7 +21,7 @@
                 <tr>
                     <th scope="row"><?= $cate['id'] ?></th>
                     <td><?= $cate['cate_name'] ?></td>
-                    <td><?= $cate['type'] ? 'Laptop' : 'Phụ kiện' ?></td>
+                    <td><?= $cate['type'] ? 'Điện thoại' : 'Phụ kiện' ?></td>
 
                     <td>
                         <a href="<?= ADMIN_URL . '?ctl=editdm&id=' . $cate['id'] ?>" class="btn btn-primary">Sửa</a>
