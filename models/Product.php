@@ -28,7 +28,7 @@ class Product extends BaseModel
      * Hàm lấy ra các sản phẩm là LAPTOPGAMING
      * được xác định bởi thuộc tính type=1
      */
-    public function listProductLapGaming()
+    public function listProductPhone()
     {
         $sql = "SELECT p.*, cate_name FROM products p JOIN categories c ON p.category_id=c.id WHERE type=1 LIMIT 4";
         $stmt = $this->conn->prepare($sql);
@@ -40,7 +40,7 @@ class Product extends BaseModel
      * Hàm lấy ra các sản phẩm không phải là laptop gaming
      * được xác định bởi type=0
      */
-    public function listProductOtherLaptop()
+    public function listProductOtherPhone()
     {
         $sql = "SELECT p.*, cate_name FROM products p JOIN categories c ON p.category_id=c.id WHERE type=0 LIMIT 8";
         $stmt = $this->conn->prepare($sql);

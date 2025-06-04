@@ -2,6 +2,7 @@
 
 class HomeController
 {
+    
     public function index()
     {   
         $product = new Product;

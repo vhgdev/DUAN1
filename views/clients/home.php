@@ -107,7 +107,7 @@
 			<!-- /row -->
 		</div>
 		<!-- /container -->
-	</div>
+</div>
 	<!-- /SECTION -->
 
 
