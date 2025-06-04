@@ -56,6 +56,31 @@ class AdminProductController
         );
     }
 
+    public function update()
+    {
+        $data = $_POST;
+
+        //Lấy thông tin sản phẩm cũ
+        $product = new Product;
+        $item = $product->find($data['id']);
+        //Nếu người dùng không nhập ảnh thì lấy lại ảnh cũ
+        $image = $item['image'];
+        //Nếu người dùng nhập ảnh
+        $file = $_FILES['image'];
+        if ($file['size'] > 0) {
+            $image = "images/" . $file['name'];
+            //upload ảnh
+            move_uploaded_file($file['tmp_name'], ROOT_DIR . $image);
+        }
+        $data['image'] = $image;
+
+        //Update
+        $product->update($data['id'], $data);
+        //di chuyển về lại trang edit
+        header("location: " . ADMIN_URL . "?ctl=editsp&id=" . $data['id']);
+        die;
+    }
+
         //Xóa sản phẩm
     public function delete()
     {
