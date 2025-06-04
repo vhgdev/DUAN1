@@ -30,4 +30,13 @@ match ($ctl) {
     'editsp' => (new AdminProductController)->edit(),
     'updatesp' => (new AdminProductController)->update(),
     'deletesp' => (new AdminProductController)->delete(),
+
+    'listdm' => (new AdminCategoryController)->index(),
+    'adddm' => (new AdminCategoryController)->add(),
+    'storedm' => (new AdminCategoryController)->store(),
+    'editdm' => (new AdminCategoryController)->edit(),
+    'updatedm' => (new AdminCategoryController)->update(),
+    'deletedm' => (new AdminCategoryController)->delete(),
+
+
 };
