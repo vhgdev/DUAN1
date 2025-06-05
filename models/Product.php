@@ -25,7 +25,7 @@ class Product extends BaseModel
     }
 
     /**
-     * Hàm lấy ra các sản phẩm là LAPTOPGAMING
+     * Hàm lấy ra các sản phẩm là ĐIỆN THOẠI
      * được xác định bởi thuộc tính type=1
      */
     public function listProductPhone()
@@ -37,7 +37,7 @@ class Product extends BaseModel
     }
 
     /**
-     * Hàm lấy ra các sản phẩm không phải là laptop gaming
+     * Hàm lấy ra các sản phẩm KHÔNG PHẢI LÀ ĐIỆN THOẠI
      * được xác định bởi type=0
      */
     public function listProductOtherPhone()

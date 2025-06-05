@@ -4,18 +4,24 @@ class HomeController
 {
     
     public function index()
-    {   
-        $product = new Product;
-       
-        //lấy danh mục
+{
+    $product = new Product;
+    
+    $iphones = (new Product)->listProductInCategory(16);
+    $samsungs = (new Product)->listProductInCategory(17);
+    $headphones = (new Product)->listProductInCategory(18);
+    $keyboards = (new Product)->listProductInCategory(19);
 
-        $phones = (new Product)->listProductInCategory(1); // Danh sach san pham laptop
-        $products = (new Product)->listProductInCategory(2); // Danh sach san pham phu kien
+    $categories = (new Category)->all();
 
-        $categories = (new Category)->all();
+    // // Debug
+    // echo '<pre>';
+    // var_dump($phones);
+    // var_dump($products);
+    // var_dump($categories);
+    // echo '</pre>';
+    // exit; // Dừng để xem kết quả,
 
-
-        return view("clients.home", compact("phones", "products", "categories"));
-      
-    }
+    return view("clients.home", compact("iphones",  "samsungs",  "headphones",  "keyboards",  "categories"));
+}
 }

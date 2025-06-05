@@ -18,15 +18,15 @@
         </div>
         <div class="mb-3">
             <label for="">Hình ảnh</label>
-            <input type="file" name="image" id="" class="form-control">
+            <input type="file" name="image" id="" class="form-control" required>
         </div>
         <div class="mb-3">
             <label for="">Giá</label>
-            <input type="number" name="price" id="" class="form-control">
+            <input type="number" name="price" id="" class="form-control" required>
         </div>
         <div class="mb-3">
             <label for="">Quantity</label>
-            <input type="number" name="quantity" id="" class="form-control">
+            <input type="number" name="quantity" id="" class="form-control" required>
         </div>
         <div class="mb-3">
             <label for="">Trạng thái kinh doanh</label> <br>
@@ -35,7 +35,7 @@
         </div>
         <div class="mb-3">
             <label for="">Mô tả</label>
-            <textarea name="description" rows="6" id="" class="form-control"></textarea>
+            <textarea name="description" rows="6" id="" class="form-control" required></textarea>
         </div>
         <div class="mb-3">
             <button type="submit" class="btn btn-primary">Thêm mới</button>
