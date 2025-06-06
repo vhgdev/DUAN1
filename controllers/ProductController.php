@@ -23,39 +23,39 @@ class ProductController
         );
     }
     
-    //Chi tiết sản phẩm 
-    // public function show() {
-    //     $id = $_GET['id']; //id sản phẩm
+    // Chi tiết sản phẩm 
+    public function show() {
+        $id = $_GET['id']; //id sản phẩm
 
-    //     $product = (new Product)->find($id);
+        $product = (new Product)->find($id);
 
-    //     //Thêm comment
-    //     if($_SERVER['REQUEST_METHOD'] === "POST"){
-    //         $data = $_POST;
-    //         //Thêm product_id và user_id
-    //         $data['product_id'] = $id;
-    //         $data['user_id'] = $_SESSION['user']['id'];
-    //         (new Comment) ->create($data);
-    //     }
+        //Thêm comment
+        if($_SERVER['REQUEST_METHOD'] === "POST"){
+            $data = $_POST;
+            //Thêm product_id và user_id
+            $data['product_id'] = $id;
+            $data['user_id'] = $_SESSION['user']['id'];
+            (new Comment) ->create($data);
+        }
 
-    //     $categories = (new Category)->all();
+        $categories = (new Category)->all();
 
-    //     $title = $product['name'] ?? "";
+        $title = $product['name'] ?? "";
 
-    //     //Danh sách sản phẩm
-    //     $productReleads = (new Product)->listProductReload($product['category_id'], $id);
+        //Danh sách sản phẩm
+        $productReleads = (new Product)->listProductReload($product['category_id'], $id);
         
-    //     //Lưu thông tin url
-    //     $_SESSION['URI'] = $_SERVER['REQUEST_URI'];
+        //Lưu thông tin url
+        $_SESSION['URI'] = $_SERVER['REQUEST_URI'];
 
-    //     $_SESSION['totalQuantity'] = (new CartController)->totalQuantityInCart();
-    //     //Lấy danh sách commit
-    //     $comments = (new Comment)->listCommentInProduct($id);
-    //     return view(
-    //         'clients.products.detail',
-    //         compact('product','categories','title','productReleads', 'comments')
-    //     );
-    // }
+        $_SESSION['totalQuantity'] = (new CartController)->totalQuantityInCart();
+        // Lấy danh sách commit
+        $comments = (new Comment)->listCommentInProduct($id);
+        return view(
+            'clients.products.detail',
+            compact('product','categories','title','productReleads', 'comments')
+        );
+    }
 
     public function list()
     {
