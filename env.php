@@ -5,7 +5,7 @@
 const ROOT_DIR = __DIR__ . "/";
 
 // Đường dẫn website
-const ROOT_URL_ = "http://localhost/DA1/DUAN1/";
+const ROOT_URL_ = "http://localhost/DUAN1/DUAN1/";
 
 // Đường dẫn đến admin
 const ADMIN_URL = ROOT_URL_ . "admin/"; 
