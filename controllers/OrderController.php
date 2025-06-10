@@ -45,7 +45,6 @@ class OrderController
     }
 
 
-    
     public function detailOrderUser()
     {
         $id = $_GET['id'];

@@ -37,7 +37,7 @@ match($ctl) {
     // 'view-checkout' => ( new CartController)->viewCheckOut(),
     // 'checkout' => ( new CartController)->checkOut(),
     // 'success' => (new CartController)->success(),
-    // 'list-order' => (new OrderController)->showOrderUser(),
-    // 'order-detail-user' => (new OrderController)->detailOrderUser(),
+    'list-order' => (new OrderController)->showOrderUser(),
+    //'order-detail-user' => (new OrderController)->detailOrderUser(),
     default => view( 'errors.404'),
 };
