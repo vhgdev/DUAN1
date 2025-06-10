@@ -70,6 +70,8 @@ class CartController
             return view('clients.carts.cart', compact('carts', 'categories', 'totalPrice'));
         }
 
+        
+
     // Xóa sản phẩm trong giỏ hàng
     public function deleteProductInCart()
     {

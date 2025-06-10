@@ -31,6 +31,11 @@
 								<div class="product-img">
 									<img src="<?= ROOT_URL_ . $iphone['image'] ?>" alt="<?= $iphone['name'] ?>" loading="lazy">
 								</div>
+								<div class="product-info">
+									<a href="<?= ROOT_URL_ . '?ctl=detail&id=' . $iphone['id'] ?>">
+										<h5 class="product-name"><?= $iphone['name'] ?></h5>
+									</a>
+									<div>
 								<div class="product-body">
 									<a href="<?= ROOT_URL_ . '?ctl=detail&id=' . $iphone['id'] ?>">
 										<h5 class="product-name"><?= $iphone['name'] ?></h5>
@@ -85,6 +90,11 @@
 								<div class="product-img">
 									<img src="<?= ROOT_URL_ . $samsung['image'] ?>" alt="<?= $samsung['name'] ?>" loading="lazy">
 								</div>
+								<div class="product-info">
+									<a href="<?= ROOT_URL_ . '?ctl=detail&id=' . $samsung['id'] ?>">
+										<h5 class="product-name"><?= $samsung['name'] ?></h5>
+									</a>
+									<div>
 								<div class="product-body">
 									<a href="<?= ROOT_URL_ . '?ctl=detail&id=' . $samsung['id'] ?>">
 										<h5 class="product-name"><?= $samsung['name'] ?></h5>
