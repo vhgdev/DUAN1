@@ -62,11 +62,14 @@ class OrderController
         $order_details = (new Order)->listOrderDetail($id);
 
         $status = (new Order)->status_details;
+        
+        $categories = (new Category())->all();
+
 
 
         
 
-        return view("clients.users.detail-order", compact('order', 'order_details', 'status', 'message'));
+        return view("clients.users.detail-order", compact('order', 'order_details', 'status', 'message','categories'));
     
     }
 }

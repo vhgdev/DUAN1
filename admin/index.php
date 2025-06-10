@@ -38,5 +38,10 @@ match ($ctl) {
     'updatedm' => (new AdminCategoryController)->update(),
     'deletedm' => (new AdminCategoryController)->delete(),
 
+    //User
+    'listuser' => (new AuthController)->index(),
+    'updateuser' => (new AuthController)->updateActive(),
+
+
 
 };
