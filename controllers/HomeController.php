@@ -13,7 +13,6 @@ class HomeController
     $keyboards = (new Product)->listProductInCategory(19);
 
     $categories = (new Category)->all();
-    
 
     // // Debug
     // echo '<pre>';

@@ -1,4 +1,6 @@
 <?php
+
+
 // Xử lý form cập nhật
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Cập nhật sản phẩm vào cơ sở dữ liệu (giả sử bạn đã thực hiện)
