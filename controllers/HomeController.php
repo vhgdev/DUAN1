@@ -4,9 +4,7 @@ class HomeController
 {
     
     public function index()
-{
-    $product = new Product;
-    
+{    
     $iphones = (new Product)->listProductInCategory(16);
     $samsungs = (new Product)->listProductInCategory(17);
     $headphones = (new Product)->listProductInCategory(18);
@@ -17,8 +15,8 @@ class HomeController
 
     // // Debug
     // echo '<pre>';
-    // var_dump($phones);
-    // var_dump($products);
+    // var_dump($iphones);
+    // var_dump($samsung);
     // var_dump($categories);
     // echo '</pre>';
     // exit; // Dừng để xem kết quả,

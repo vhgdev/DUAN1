@@ -16,8 +16,7 @@ class OrderController
         $message = "";
         // Thay đổi trạng thái
         if ($_SERVER['REQUEST_METHOD'] === "POST") {
-            $status = $_POST['status'];
-            (new Order)->updateStatus($id, $status);
+            (new Order)->updateStatus($id, 4);
             $message = "Cập nhật trạng thái đơn hàng thành công !";
         }
 
@@ -45,7 +44,6 @@ class OrderController
     }
 
 
-    
     public function detailOrderUser()
     {
         $id = $_GET['id'];

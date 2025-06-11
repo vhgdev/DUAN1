@@ -51,17 +51,17 @@
         </div>
         <!-- Nút hành động -->
         <div class="d-flex justify-content-between mt-4">
-            <a href="shop.html" class="btn btn-secondary">
-                <i class="bi bi-arrow-left"></i> Tiếp tục mua sắm
+            <a href="<?= ROOT_URL_ ?>" class="btn btn-danger btn-sm">
+                <i class="bi bi-arrow-clockwise"></i> Tiếp tục mua sắm
             </a>
             <div>
-                <button type="submit" class="btn btn-warning">
+                <br><button type="submit" class="btn btn-warning">
                     <i class="bi bi-arrow-clockwise"></i> Cập nhật giỏ hàng
                 </button>
-                <button type="button" class="btn btn-success">
+                <a href="<?= ROOT_URL_ . '?ctl=view-checkout' ?>" type="button" class="btn btn-success">
                     <i class="bi bi-credit-card"></i> Thanh toán
-                </button>
-            </div>
+                </a>
+            </div><br>
         </div>
     </form>
 </div>

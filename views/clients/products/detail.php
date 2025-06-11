@@ -77,34 +77,18 @@
 						</div>
 						<p><?= $product['description'] ?></p>
 								<hr>
-						<!-- Bình luận -->
-						<div class="comment">
-						 <?php foreach ($comments as $comment):?>
-							<p>
-								<b><?= $comment['fullname']?></b> <?= date('d-m-Y H:i:s', strtotime($comment['create_at']))?> <br>
-								<?= $comment['content']?>
-							</p>
-							<?php endforeach  ?>
-							</div>
-							<?php if(isset($_SESSION['user'])) :?>
-								<form action="" method="post">
-									<textarea name="content" rows="3" cols="60" required id=""></textarea>
-									<br><button type="submit">Gửi</button>
-								</form>
-								<?php else:?>
-									<div>Bạn cần<b><a href="<?= ROOT_URL_. '?ctl=login'?>"> Đăng nhập </a></b>để bình luận</div>
-							<?php endif ?>
+
 
 
 						<div class="add-to-cart">
-							<div class="qty-label">
-								Số lượng
-								<div class="input-number">
-									<input type="number">
-									<span class="qty-up">+</span>
-									<span class="qty-down">-</span>
-								</div>
-							</div>
+<div class="qty-label">
+    Số lượng
+    <div class="input-number">
+        <input type="number" id="quantity" name="quantity" value="1" min="1" max="100" required>
+        <span class="qty-up">+</span>
+        <span class="qty-down">-</span>
+    </div>
+</div>
 							<a href="<?= ROOT_URL_ .  '?ctl=add-cart&id=' . $product['id'] ?>" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng</a>
 						</div>
 
