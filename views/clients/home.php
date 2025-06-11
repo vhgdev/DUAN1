@@ -11,7 +11,7 @@
 			<!-- section title -->
 			<div class="col-md-12">
 				<div class="section-title">
-					<h3 class="title">phones</h3>
+					<h3 class="title">iphone</h3>
 				</div>
 			</div>
 			<!-- /section title -->
