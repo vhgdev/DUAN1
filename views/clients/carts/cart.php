@@ -55,9 +55,10 @@
                 <i class="bi bi-arrow-clockwise"></i> Tiếp tục mua sắm
             </a>
             <div>
-                <br><button type="submit" class="btn btn-warning">
+                <br>
+                <a href="<?= ROOT_URL_ . '?ctl=update-cart' ?>" type="button" class="btn btn-success">
                     <i class="bi bi-arrow-clockwise"></i> Cập nhật giỏ hàng
-                </button>
+                </a>
                 <a href="<?= ROOT_URL_ . '?ctl=view-checkout' ?>" type="button" class="btn btn-success">
                     <i class="bi bi-credit-card"></i> Thanh toán
                 </a>
