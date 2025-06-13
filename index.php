@@ -28,10 +28,6 @@ match($ctl) {
     'detail' => (new ProductController)->show(),
     'register' => (new AuthController)->register(),
     'login' =>( new AuthController)->login(),
-<<<<<<< HEAD
-    'logout' => (new AuthController)->logout(), 
-    'search' => (new SearchController)->search(),
-=======
     'logout' => (new AuthController)->logout(),
      'add-cart' => (new CartController)->addToCart(),
      'view-cart' => (new CartController)->viewCart(),
@@ -42,6 +38,5 @@ match($ctl) {
     'checkout' => ( new CartController)->checkOut(),
     'success' => (new CartController)->success(),
     'list-order' => (new OrderController)->showOrderUser(),
->>>>>>> c56a1657ff2ab2ad97677aba189b8546d014866a
     default => view( 'errors.404'),
 };
