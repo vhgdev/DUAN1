@@ -51,17 +51,12 @@
                         <label class="form-check-label" for="form2Example31"> Remember me </label>
                     </div>
                 </div>
-
-                <div class="col">
-                    <!-- Simple link -->
-                    <a href="#!">Forgot password?</a>
-                </div>
             </div>
 
             <!-- Submit button -->
             <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4" style="background-color: #D10024;">
                 <span>Đăng nhập</span>
-            </button>
+            </button><br>
 
             <!-- Register buttons -->
             <div class="text-center">

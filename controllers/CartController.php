@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/../models/Cart.php';
+
 
 class CartController
 {
@@ -49,26 +51,69 @@ class CartController
 
     // Tính tổng giá trong giỏ hàng
     public function totalPriceInCart()
-    {
-        $carts = $_SESSION['cart'] ?? [];
-        $total = 0;
-        foreach ($carts as $cart) {
-            $total += (int) $cart['price'] * (int) $cart['quantity'];  // Chuyển về số nguyên
-        }
-        return $total;
+{
+    $carts = $_SESSION['cart'] ?? [];
+    $total = 0;
+
+    foreach ($carts as $cart) {
+        $total += (int)$cart['price'] * (int)$cart['quantity'];
     }
+
+    // Áp dụng mã giảm giá nếu có
+    if (isset($_SESSION['coupon'])) {
+        $coupon = $_SESSION['coupon'];
+        $discount = ($coupon['discount_type'] === 'percent')
+            ? $total * ($coupon['discount_value'] / 100)
+            : $coupon['discount_value'];
+        $total -= $discount;
+    }
+
+    return $total; // Quan trọng: phải return!
+}
 
     // Hàm hiển thị chi tiết giỏ hàng
         public function viewCart()
-        {
-            $carts = $_SESSION['cart'] ?? [];
+{
+    // Lấy giỏ hàng từ session, nếu không có thì là mảng rỗng
+    $carts = $_SESSION['cart'] ?? [];
 
-            $categories = (new Category)->all();
+    // Lấy danh mục để hiển thị (nếu có dùng ở view)
+    $categories = (new Category())->all();
 
-            $totalPrice = $this->totalPriceInCart();
+    // Tính tổng tiền sản phẩm trong giỏ
+    $totalPrice = $this->totalPriceInCart();
 
-            return view('clients.carts.cart', compact('carts', 'categories', 'totalPrice'));
+    // Khởi tạo giảm giá và mã coupon nếu có
+    $discount = 0;
+    $coupon = null;
+
+    // Nếu có mã giảm giá trong session thì áp dụng
+    if (isset($_SESSION['coupon'])) {
+        $coupon = $_SESSION['coupon'];
+
+        // Kiểm tra loại giảm giá: phần trăm hay cố định
+        if ($coupon['discount_type'] === 'percent') {
+            $discount = $totalPrice * ($coupon['discount_value'] / 100);
+        } else {
+            $discount = $coupon['discount_value'];
         }
+
+        // Trừ giảm giá vào tổng tiền, đảm bảo không âm
+        $totalPrice -= $discount;
+        if ($totalPrice < 0) {
+            $totalPrice = 0;
+        }
+    }
+
+    // Truyền dữ liệu sang view
+    return view('clients.carts.cart', [
+        'carts' => $carts,
+        'categories' => $categories,
+        'totalPrice' => $totalPrice,
+        'discount' => $discount,
+        'coupon' => $coupon
+    ]);
+}
 
         
 
@@ -173,4 +218,22 @@ class CartController
         return view("clients.carts.success");
 
     }
+
+     public function applyCoupon()
+{
+    $code = trim($_POST['coupon_code']);
+    $couponModel = new Coupon();
+    $coupon = $couponModel->findByCode($code);
+
+    if ($coupon && strtotime($coupon['expiry_date']) >= time()) {
+        $_SESSION['coupon'] = $coupon;
+        $_SESSION['success'] = "Áp dụng mã thành công!";
+    } else {
+        $_SESSION['error'] = "Mã không hợp lệ hoặc đã hết hạn!";
+    }
+
+    header("Location: " . ROOT_URL_ . "?ctl=view-cart");
 }
+
+}
+

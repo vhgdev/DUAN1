@@ -1,5 +1,6 @@
 <?php include_once ROOT_DIR . "views/admin/header.php" ?>
 
+<H2>DANH SÁCH TÀI KHOẢN</H2>
 <div class="container">
     <table class="table">
         <thead>

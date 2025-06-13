@@ -1,5 +1,7 @@
 <?php 
 class Comment extends BaseModel {
+
+    
     //Hiển thị
     public function listCommentInProduct($product_id) {
         $sql = "SELECT c.*, fullname FROM comments c JOIN users u ON u.id=c.user_id WHERE product_id=:product_id";
@@ -23,5 +25,7 @@ class Comment extends BaseModel {
         $stmt = $this->conn->prepare($sql);
         $stmt->execute($data);
     }
+
+    
 }
 ?>

@@ -1,5 +1,8 @@
 <?php include_once ROOT_DIR . "views/admin/header.php" ?>
 
+
+<h2>DANH SÁCH SẢN PHẨM</h2>
+
 <div>
     <table class="table">
         <thead>
