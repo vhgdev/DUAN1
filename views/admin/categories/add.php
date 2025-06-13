@@ -1,7 +1,7 @@
 <?php include_once ROOT_DIR . "views/admin/header.php" ?>
 
 
-<h1>Trang dashboard admin</h1>
+<h1>THÊM DANH MỤC</h1>
 
 
 
