@@ -1,41 +1,23 @@
 <?php
-
-/**
- * Hàm view để render view từ đường dẫn được chỉ định
- * $path_view: đường dẫn tới file view trong thư mục views
- * $data: là dữ liệu được gửi từ controller vào view
- */
-function view($viewPath, $data = []) {
+function view($path_view, $data = [])
+{
     extract($data);
 
     $path_view = str_replace(".", "/", $path_view);
 
-    include_once ROOT_DIR . "views/$path_view.php";
+    include_once ROOT_DIR . "/views/$path_view.php";
+
 }
 
-//Hàm dd dùng để debug
-function dd($data)
-{
-    echo "<pre>";
-    var_dump($data);
-    echo "</pre>";
-}
 
-function session_flash($key) 
-{
-    $message = $_SESSION[$key] ?? '';
-    unset($_SESSION[$key]);
-    return $message;
-}
-
-//chuyển đổi trạng thái đơn hàng
+// chuyển đổi trạng thái đơn hàng
 function getOrderStatus($status)
 {
     $status_details = [
-        1 => 'Chờ xử lý',
-        2 => 'Đang xử lý',
-        3 => 'Hoàn thành',
-        4 => 'Đã hủy'
+        1 => 'chờ xử lí',
+        2 => 'đang xử lí',
+        3 => 'hoàn thành',
+        4 => 'đã hủy',
     ];
     return $status_details[$status];
-} 
+}
