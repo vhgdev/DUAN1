@@ -1,12 +1,68 @@
 <?php include_once ROOT_DIR . "views/clients/header.php" ?>
 
 
+<?php if (isset($_SESSION['success_message'])): ?>
+    <div class="alert alert-success">
+        <?= $_SESSION['success_message']; ?>
+        <?php unset($_SESSION['success_message']); ?>
+    </div>
+<?php endif; ?>
+
+<?php if (isset($_SESSION['error_message'])): ?>
+    <div class="alert alert-danger">
+        <?= $_SESSION['error_message']; ?>
+        <?php unset($_SESSION['error_message']); ?>
+    </div>
+<?php endif; ?>
+
+
+<!-- NỘI DUNG TRANG CHỦ -->
+<!-- Ví dụ: slide, danh sách sản phẩm,... -->
+
+
 <!-- SECTION -->
 <div class="section">
 	<!-- container -->
 	<div class="container">
 		<!-- row -->
-		<div class="row">
+		<div class="row" >
+<div class="section">
+  <style>
+    .banner-container {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      overflow: hidden;
+    }
+
+    .banner-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .banner-slide.active {
+      opacity: 1;
+      z-index: 1;
+    }
+  </style>
+
+  <div class="row banner-container">
+    <div class="banner-container">
+      <img class="banner-slide" src="./images/banner1.jpg" alt="Banner 1">
+      <img class="banner-slide" src="./images/banner2.jpg" alt="Banner 2">
+      <img class="banner-slide" src="./images/banner3.jpg" alt="Banner 3">
+    </div>
+  </div>
+</div>
+
+
 
 			<!-- section title -->
 			<div class="col-md-12">
@@ -220,3 +276,5 @@
 
 
 	<?php include_once ROOT_DIR . "views/clients/footer.php" ?>
+
+	<script src="js/banner.js"></script>

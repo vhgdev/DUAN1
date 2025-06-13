@@ -27,7 +27,7 @@ match ($ctl) {
     'category' => (new ProductController)->list(),
     'detail' => (new ProductController)->show(),
     'register' => (new AuthController)->register(),
-    'login' => (new AuthController)->login(),
+    'login' =>( new AuthController)->login(),
     'logout' => (new AuthController)->logout(),
     'add-cart' => (new CartController)->addToCart(),
     'view-cart' => (new CartController)->viewCart(),
@@ -38,5 +38,5 @@ match ($ctl) {
     'checkout' => (new CartController)->checkOut(),
     'success' => (new CartController)->success(),
     'list-order' => (new OrderController)->showOrderUser(),
-    default => view('errors.404'),
+    default => view( 'errors.404'),
 };
