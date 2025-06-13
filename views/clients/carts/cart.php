@@ -59,31 +59,25 @@
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
-                <tfoot class="table-light">
-                    <tr>
-                        <td colspan="5" class="text-end fw-bold">Tổng tiền:</td>
-                        <td colspan="2" class="fw-bold text-danger"><?= number_format($totalPrice) ?> VNĐ</td>
-                    </tr>
-                    <?php
-                    $discount = 0;
-                    if (isset($_SESSION['coupon'])) {
-                        $coupon = $_SESSION['coupon'];
-                        if ($coupon['discount_type'] === 'percent') {
-                            $discount = min($totalPrice * ($coupon['discount_value'] / 100), $totalPrice); // Giới hạn giảm giá không vượt tổng tiền
-                        } else {
-                            $discount = min($coupon['discount_value'], $totalPrice); // Giới hạn giảm giá không vượt tổng tiền
-                        }
-                    ?>
-                        <tr>
-                            <td colspan="5" class="text-end text-success">Giảm giá (<?= htmlspecialchars($coupon['code']) ?>):</td>
-                            <td colspan="2" class="text-success">-<?= number_format($discount) ?> VNĐ</td>
-                        </tr>
-                        <tr>
-                            <td colspan="5" class="text-end fw-bold">Tổng thanh toán:</td>
-                            <td colspan="2" class="fw-bold text-danger"><?= number_format($totalPrice - $discount) ?> VNĐ</td>
-                        </tr>
-                    <?php } ?>
-                </tfoot>
+                <tfoot>
+    <tr>
+        <td colspan="5" class="text-end fw-bold">Tổng tiền:</td>
+        <td colspan="2" class="fw-bold text-danger"><?= number_format($totalPrice) ?> VNĐ</td>
+    </tr>
+
+    <?php if (!empty($coupon)): ?>
+        <tr>
+            <td colspan="5" class="text-end text-success">Giảm giá (<?= htmlspecialchars($coupon['code']) ?>):</td>
+            <td colspan="2" class="text-success">-<?= number_format($discount) ?> VNĐ</td>
+        </tr>
+        <tr>
+            <td colspan="5" class="text-end fw-bold">Tổng thanh toán:</td>
+            <td colspan="2" class="fw-bold text-danger"><?= number_format($finalPrice) ?> VNĐ</td>
+        </tr>
+    <?php endif; ?>
+</tfoot>
+
+
             </table>
         </div>
 
