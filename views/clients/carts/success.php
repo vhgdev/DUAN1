@@ -78,7 +78,7 @@
 					<div class="col-md-3">
 						<div class="header-logo">
 							<a href="<?= ROOT_URL_ ?>" class="logo">
-								<img src="images/logo-removebg-preview (1).png" alt="" width="290px" height="65px">
+								<img src="images/logo.png" alt="" width="290px" height="65px">
 							</a>
 						</div>
 					</div>

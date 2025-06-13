@@ -15,6 +15,8 @@ $total = 0;
     </div>
 <?php endif ?>
 
+<H2>CHI TIẾT ĐƠN HÀNG</H2>
+
 <div class="container mt-5">
     <div class="card">
         <div class="card-header bg-dark text-white">

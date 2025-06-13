@@ -65,7 +65,7 @@ class OrderController
         $categories = (new Category())->all();
 
 
-
+        
         
 
         return view("clients.users.detail-order", compact('order', 'order_details', 'status', 'message','categories'));

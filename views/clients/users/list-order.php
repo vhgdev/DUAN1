@@ -2,16 +2,16 @@
 
 <div class="container">
 
-    <div>
-        <!-- thông tin khách hàng -->
-         <div class="mb-4">
-            <h5>thông tin khách hàng</h5>
-            <p><strong>Họ tên:</strong><?= $user['fullname'] ?></p>
-            <p><strong>Email</strong><?= $user['email'] ?></p>
-            <p><strong>Điện thoại:</strong><?= $user['phone'] ?></p>
-            <p><strong>Địa chỉ:</strong><?= $user['address'] ?></p>
-         </div>
+  <div>
+    <!-- thông tin khách hàng -->
+    <div class="mb-4"><br>
+      <h3>THÔNG TIN KHÁCH HÀNG</h3>
+      <p><strong>Họ tên: </strong><?= $user['fullname'] ?></p>
+      <p><strong>Email: </strong><?= $user['email'] ?></p>
+      <p><strong>Điện thoại: </strong><?= $user['phone'] ?></p>
+      <p><strong>Địa chỉ: </strong><?= $user['address'] ?></p>
     </div>
+  </div>
 
   <table class="table">
     <thead>
@@ -31,10 +31,11 @@
           <td><?= $order['payment_method'] ?></td>
           <td><?= getOrderStatus($order['status']) ?></td>
           <td><?= number_format($order['total_price']) ?>VNĐ</td>
-          <td><?= $order['created_at'] ?></td>
+          <td><?= date('d-m-Y H:i:s', strtotime($order['created_at'])) ?></td>
           <td>
-            <a href="<?= ROOT_URL_ . '?ctl=order-detail-user&id=' . $order['id'] ?>" class="btn btn-primary ">chi tiết</a>
-            Hủy
+              <form action="" method="post">
+                <button class="btn btn-danger">Hủy đơn hàng</button>
+              </form>
           </td>
         </tr>
       <?php endforeach ?>
