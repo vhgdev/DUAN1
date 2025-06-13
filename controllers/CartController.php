@@ -89,7 +89,7 @@ class CartController
         $quantities = $_POST['quantity'];
         // Cập nhật số lượng
         foreach ($quantities as $id => $qty) {
-            $_SESSION['cart'][$id]['quantity'] = (int) $qty;  // Chuyển về số nguyên trước khi lưu
+            $_SESSION['cart'][$id]['quantity'] =  $qty;  // Chuyển về số nguyên trước khi lưu
         }
         return header("Location: " . ROOT_URL_ . "?ctl=view-cart");
     }
