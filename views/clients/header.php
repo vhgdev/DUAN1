@@ -145,6 +145,7 @@
 						<a href="<?= ROOT_URL_ . '?ctl=category&id=' . $cate['id'] ?>">
 							<?= $cate['cate_name'] ?></a>
 					</li>
+					
 
 				<?php endforeach ?></li>
 				</ul>

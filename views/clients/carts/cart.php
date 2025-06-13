@@ -41,16 +41,42 @@
                     <?php endforeach ?>
                 </tbody>
                 <!-- Tổng tiền -->
-                <tfoot class="table-light">
-                    <tr>
-                        <td colspan="5" class="text-end fw-bold">Tổng tiền:</td>
-                        <td colspan="2" class="fw-bold text-danger"><?= number_format($totalPrice) ?> VNĐ</td>
-                    </tr>
-                </tfoot>
+               <tfoot class="table-light">
+    <tr>
+        <td colspan="5" class="text-end fw-bold">Tổng tiền:</td>
+        <td colspan="2" class="fw-bold text-danger"><?= number_format($totalPrice) ?> VNĐ</td>
+    </tr>
+
+    <?php
+    $discount = 0;
+    if (isset($_SESSION['coupon'])) {
+        $coupon = $_SESSION['coupon'];
+        if ($coupon['discount_type'] === 'percent') {
+            $discount = $totalPrice * ($coupon['discount_value'] / 100);
+        } else {
+            $discount = $coupon['discount_value'];
+        }
+    ?>
+    <tr>
+        <td colspan="5" class="text-end text-success">Giảm giá (<?= $coupon['code'] ?>):</td>
+        <td colspan="2" class="text-success">-<?= number_format($discount) ?> VNĐ</td>
+    </tr>
+    <tr>
+        <td colspan="5" class="text-end fw-bold">Tổng thanh toán:</td>
+        <td colspan="2" class="fw-bold text-danger"><?= number_format($totalPrice - $discount) ?> VNĐ</td>
+    </tr>
+    <?php } ?>
+</tfoot>
+
             </table>
         </div>
         <!-- Nút hành động -->
         <div class="d-flex justify-content-between mt-4">
+            <form method="POST" action="<?= ROOT_URL_ . '?ctl=apply-coupon' ?>">
+  <input type="text" name="coupon_code" placeholder="Nhập mã giảm giá">
+  <button type="submit">Áp dụng</button>
+</form>
+
             <a href="<?= ROOT_URL_ ?>" class="btn btn-danger btn-sm">
                 <i class="bi bi-arrow-clockwise"></i> Tiếp tục mua sắm
             </a>

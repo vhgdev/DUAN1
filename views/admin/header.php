@@ -34,6 +34,10 @@
                             <a class="nav-link" href="<?= ADMIN_URL . '?ctl=list-order' ?>">Đơn hàng</a>
                         </li>
 
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= ADMIN_URL . '?ctl=list-coupon' ?>">Mã giảm giá</a>
+                        </li>
+
 
                     </ul>
                     <form class="d-flex" role="search">
