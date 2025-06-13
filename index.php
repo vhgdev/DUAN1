@@ -22,20 +22,20 @@ $ctl = $_GET['ctl'] ?? '';
 
 
 
-match($ctl) {
+match ($ctl) {
     '', 'home' => (new HomeController)->index(),
     'category' => (new ProductController)->list(),
     'detail' => (new ProductController)->show(),
     'register' => (new AuthController)->register(),
     'login' =>( new AuthController)->login(),
     'logout' => (new AuthController)->logout(),
-     'add-cart' => (new CartController)->addToCart(),
-     'view-cart' => (new CartController)->viewCart(),
-     'delete-cart' => (new CartController)->deleteProductInCart(),
-     'update-cart' => (new CartController)->updateCart(),
+    'add-cart' => (new CartController)->addToCart(),
+    'view-cart' => (new CartController)->viewCart(),
+    'delete-cart' => (new CartController)->deleteProductInCart(),
+    'update-cart' => (new CartController)->updateCart(),
     'search' => (new SearchController)->search(),
-    'view-checkout' => ( new CartController)->viewCheckOut(),
-    'checkout' => ( new CartController)->checkOut(),
+    'view-checkout' => (new CartController)->viewCheckOut(),
+    'checkout' => (new CartController)->checkOut(),
     'success' => (new CartController)->success(),
     'list-order' => (new OrderController)->showOrderUser(),
     'apply-coupon' => (new CartController)->applyCoupon(),

@@ -1,7 +1,7 @@
 <?php include_once ROOT_DIR . "views/admin/header.php" ?>
 
 
-<h1>Trang dashboard admin</h1>
+<h2>DANH SÁCH DANH MỤC</h2>
 
 <div>
     <?php if ($message != '') : ?>

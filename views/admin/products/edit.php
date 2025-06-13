@@ -12,6 +12,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <?php include_once ROOT_DIR . "views/admin/header.php" ?>
 
+<h2>CHỈNH SỬA SẢN PHẨM</h2>
+
 <div>
     <form action="<?= ADMIN_URL . '?ctl=updatesp' ?>" method="post" enctype="multipart/form-data">
         <div class="mb-3">
