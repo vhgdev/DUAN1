@@ -16,7 +16,7 @@ function view($path_view, $data = [])
 }
 
 
-// chuyển đổi trạng thái đơn hàng
+
 function getOrderStatus($status)
 {
     $status_details = [

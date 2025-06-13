@@ -16,8 +16,7 @@ class OrderController
         $message = "";
         // Thay đổi trạng thái
         if ($_SERVER['REQUEST_METHOD'] === "POST") {
-            $status = $_POST['status'];
-            (new Order)->updateStatus($id, $status);
+            (new Order)->updateStatus($id, 4);
             $message = "Cập nhật trạng thái đơn hàng thành công !";
         }
 
@@ -30,7 +29,7 @@ class OrderController
         return view("admin.orders.detail", compact('order', 'order_details', 'status', 'message'));
     }
 
-//Hiển thị danh sách hóa đơn của user theo id
+
     public function showOrderUser(){
         $user_id = $_SESSION['user']['id'];
 

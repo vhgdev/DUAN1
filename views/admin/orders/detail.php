@@ -1,4 +1,19 @@
-<?php include_once ROOT_DIR . "views/clients/header.php" ?>
+<?php
+if (!isset($order) || empty($order)) {
+    echo "Dữ liệu đơn hàng không khả dụng.";
+    exit;
+}
+$orderDate = !empty($order['created_at']) ? date('d-m-Y H:i:s', strtotime($order['created_at'])) : "Không xác định";
+$total = 0;
+?>
+
+<?php include_once ROOT_DIR . "views/admin/header.php" ?>
+
+<?php if ($message != "") : ?> 
+    <div class="alert alert-success">
+        <?= $message ?>
+    </div>
+<?php endif ?>
 
 <div class="container mt-5">
     <div class="card">
@@ -13,7 +28,6 @@
             <div class="mb-4">
                 <h5>Mã đơn hàng: #<?= $order['id'] ?></h5>
                 <p><strong>Ngày đặt hàng: </strong> <?= $orderDate ?></p>
-                <p><strong>Trạng thái:</strong><span class="badge bg-success"><?= getOrderStatus($order['status'])?></span></p>
             </div>
 
 
@@ -50,9 +64,9 @@
                                     <td>
                                         <img src="<?= ROOT_URL_ . $detail['image'] ?>" width="60" alt="Hình sản phẩm">
                                     </td>
+                                    <td><?= number_format($detail['price']) ?></td>
                                     <td><?= $detail['quantity'] ?></td>
-                                    <td><?= number_format($detail['price']) ?>VNĐ</td>
-                                    <td><?= number_format($detail['quantity'] * $detail['price']) ?>VNĐ</td>
+                                    <td><?= number_format($detail['quantity'] * $detail['price']) ?></td>
                                 </tr>
                             <?php endforeach; ?>
                     </tbody>
@@ -65,16 +79,34 @@
                 </table>
             </div>
 
-            <div class="d-flex justify-content-between">
-                    <a href="" class="btn btn-secondary">quay lại danh sách đơn hàng</a>
-                    <?php if($order['status'] === 1) : ?>
-                    <form action="" method="post">
-                        <button class="btn btn-primary">hủy đơn hàng</button>
-                    </form>
-                    <?php endif ?>
+            <div class="mb-4">
+                <h5>Cập nhật trạng thái đơn hàng</h5>
+                <form action="" method="POST">
+                    <div class="mb-3">
+                        <label for="orderStatus" class="form-label">Trạng thái đơn hàng</label>
+                        <select name="status" id="orderStatus" class="form-select">
+                            <?php foreach ($status as $key => $value) : ?>
+                                <option value="<?= $key ?>"
+                                    <?= $order['status'] == $key ? 'selected' : '' ?>
+                                    <?php
+                                    if ($order['status'] == 2 && in_array($key, [1, 4])) {
+                                        echo "disabled";
+                                    } elseif ($order['status'] == 3 && in_array($key, [1, 2, 4])) {
+                                        echo "disabled";
+                                    } elseif ($order['status'] == 4 && in_array($key, [1, 2, 3])) {
+                                        echo "disabled";
+                                    }
+                                    ?>>
+                                    <?= $value ?>
+                                </option>
+                            <?php endforeach ?>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Cập nhật</button>
+                </form>
             </div>
         </div>
     </div>
 </div>
 
-<?php include_once ROOT_DIR . "views/clients/footer.php";
+<?php include_once ROOT_DIR . "views/admin/footer.php" ?>
