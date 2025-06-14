@@ -1,6 +1,8 @@
 <?php
+require_once 'BaseModel.php';
 
 class User extends BaseModel {
+    protected $table = 'users';
     // Lấy toàn bộ users
     public function all(){
         $sql="SELECT *FROM users";
@@ -45,4 +47,15 @@ class User extends BaseModel {
 
         $stmt->execute(['id' => $id, 'active'=>$active]);
     }
+        // Cập nhật mật khẩu của user
+    public function updatePassword($id, $hashedPassword): void {
+    $sql = "UPDATE users SET password = :password WHERE id = :id";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute([
+        'password' => $hashedPassword,
+        'id' => $id
+    ]);
+}
+
+
 }

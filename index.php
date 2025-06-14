@@ -18,6 +18,7 @@ require_once __DIR__ . "/controllers/SearchController.php";
 require_once __DIR__ . "/controllers/OrderController.php";
 
 
+
 $ctl = $_GET['ctl'] ?? '';
 
 
@@ -39,6 +40,9 @@ match ($ctl) {
     'success' => (new CartController)->success(),
     'list-order' => (new OrderController)->showOrderUser(),
     'apply-coupon' => (new CartController)->applyCoupon(),
+    'change-password' => (new AuthController)->changePasswordForm(),
+    'handle-change-password' => (new AuthController)->handleChangePassword(),
+
 
     default => view( 'errors.404'),
 };

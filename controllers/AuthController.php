@@ -84,4 +84,63 @@ class AuthController{
         (new User)->updateActive($data['id'], $data['active']);
         return header('location: ' . ADMIN_URL . '?ctl=listuser');
     }
+
+    public function changePasswordForm() {
+    $error = $_SESSION['error'] ?? '';
+    $message = $_SESSION['success'] ?? '';
+    unset($_SESSION['error'], $_SESSION['success']);
+
+    $categories = (new Category())->all(); // Thêm dòng này
+
+    return view('clients.users.change-password', compact('error', 'message', 'categories'));
+}
+
+
+// Xử lý đổi mật khẩu
+public function handleChangePassword() {
+    if (!isset($_SESSION['user'])) {
+        $_SESSION['error'] = "Bạn cần đăng nhập để sử dụng chức năng này";
+        header("location: " . ROOT_URL_ . "?ctl=login");
+        exit;
+    }
+
+    $currentPassword = $_POST['current_password'] ?? '';
+    $newPassword = $_POST['new_password'] ?? '';
+    $confirmPassword = $_POST['confirm_password'] ?? '';
+
+    $user = $_SESSION['user'];
+
+    // Kiểm tra mật khẩu cũ
+    if (!password_verify($currentPassword, $user['password'])) {
+        $_SESSION['error'] = "Mật khẩu hiện tại không đúng";
+        header("location: " . ROOT_URL_ . "?ctl=change-password");
+        exit;
+    }
+
+    // Kiểm tra mật khẩu mới khớp
+    if ($newPassword !== $confirmPassword) {
+        $_SESSION['error'] = "Mật khẩu mới không khớp";
+        header("location: " . ROOT_URL_ . "?ctl=change-password");
+        exit;
+    }
+
+    // Cập nhật mật khẩu mới
+    $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+    (new User())->updatePassword($user['id'], $hashedPassword);
+
+    // Hủy session và yêu cầu đăng nhập lại
+    session_unset();
+    session_destroy();
+
+    // Khởi động session mới để gửi thông báo
+    session_start();
+    $_SESSION['message'] = "Bạn đã đổi mật khẩu thành công. Vui lòng đăng nhập lại.";
+
+    // Chuyển về trang đăng nhập
+    header("location: " . ROOT_URL_ . "?ctl=login");
+    exit;
+}
+
+
+
 }
