@@ -16,7 +16,7 @@
             top: 0;
             left: 0;
             width: 250px;
-            background-color: #2c3e50;
+            background-color: #1e1f25;
             padding-top: 20px;
             transition: all 0.3s;
         }

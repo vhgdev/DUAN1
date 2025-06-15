@@ -5,7 +5,7 @@
             <div class="container-fluid">
                 <div class="card shadow">
                     <div class="card-header d-flex justify-content-between align-items-center p-3 bg-primary text-white">
-                        <h2 class="mb-0">Danh Sách Sản Phẩm</h2>
+                        <h2 class="mb-0">DANH SÁCH SẢN PHẨM</h2>
                         <div class="d-flex">
                             <input type="text" class="form-control me-2" placeholder="Tìm kiếm..." id="searchInput">
                             <a href="<?= ADMIN_URL . '?ctl=addsp' ?>" class="btn btn-light btn-sm">Thêm Sản Phẩm</a>

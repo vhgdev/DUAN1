@@ -1,7 +1,7 @@
 <?php include_once ROOT_DIR . "views/clients/header.php"; ?>
 
-<div class="container mt-5">
-    <h1 class="mb-4 text-center">Giỏ hàng của bạn</h1>
+<div class="container mt-5"><br>
+    <h1 class="mb-4 text-center">Giỏ hàng của bạn</h1><br>
 
     <!-- Hiển thị thông báo -->
     <?php if (isset($_SESSION['success'])): ?>
@@ -15,7 +15,7 @@
     <div class="row mb-4">
         <div class="col-md-6 offset-md-3">
             <form method="POST" action="<?= htmlspecialchars(ROOT_URL_ . '?ctl=apply-coupon') ?>" class="d-flex">
-                <input type="text" name="coupon_code" class="form-control me-2" placeholder="Nhập mã giảm giá" required>
+                <input type="text" name="coupon_code" class="form-control me-2" placeholder="Nhập mã giảm giá" required><br>
                 <button type="submit" class="btn btn-primary">Áp dụng</button>
             </form>
         </div>
