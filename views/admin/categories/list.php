@@ -1,4 +1,8 @@
 <?php include_once ROOT_DIR . "views/admin/header.php" ?>
+
+
+<h2>DANH SÁCH DANH MỤC</h2>
+
 <div>
     <?php if ($message != '') : ?>
         <div class="mt-3 mb-3 alert alert-success">

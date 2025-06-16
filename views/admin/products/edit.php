@@ -1,4 +1,6 @@
 <?php
+
+
 // Xử lý form cập nhật
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Cập nhật sản phẩm vào cơ sở dữ liệu (giả sử bạn đã thực hiện)
@@ -9,6 +11,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <?php include_once ROOT_DIR . "views/admin/header.php" ?>
+
+<h2>CHỈNH SỬA SẢN PHẨM</h2>
 
 <div>
     <form action="<?= ADMIN_URL . '?ctl=updatesp' ?>" method="post" enctype="multipart/form-data">
