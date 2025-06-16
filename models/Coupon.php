@@ -49,5 +49,17 @@ class Coupon {
         $stmt = $this->conn->prepare("DELETE FROM coupons WHERE id = :id");
         $stmt->execute([':id' => $id]);
     }
+
+    public function findByCode($code)
+{
+    $sql = "SELECT * FROM coupons WHERE code = :code";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute(['code' => $code]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+
+    
+    
 }
 ?>

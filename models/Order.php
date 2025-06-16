@@ -2,12 +2,16 @@
 
 class Order extends BaseModel
 {
-    public 
-    $status_details = [
-        1 => 'Chờ xử lý',
-        2 => 'Đang xử lý',
-        3 => 'Hoàn thành',
-        4 => 'Đã hủy'
+    const STATUS_PENDING = 1;
+    const STATUS_PROCESSING = 2;
+    const STATUS_COMPLETED = 3;
+    const STATUS_CANCELED = 4;
+
+    public $status_details = [
+        self::STATUS_PENDING => 'Chờ xử lý',
+        self::STATUS_PROCESSING => 'Đang xử lý',
+        self::STATUS_COMPLETED => 'Đã hoàn thành',
+        self::STATUS_CANCELED => 'Hủy'
     ];
     public function all()
     {
@@ -48,15 +52,26 @@ class Order extends BaseModel
         return $this->conn->lastInsertId(); // Return the inserted order ID
     }
 
-    public function updateStatus($id, $status)
-    {
+public function updateStatus($id, $status)
+{
+    // Kiểm tra $id và $status
+    if (!is_numeric($id) || $id <= 0 || !is_numeric($status) || $status <= 0) {
+        return false;
+    }
+
+    try {
         $sql = "UPDATE orders SET status = :status WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([
             ':id' => $id,
             ':status' => $status,
         ]);
+        return $stmt->rowCount() > 0;
+    } catch (PDOException $e) {
+        error_log("Lỗi cập nhật trạng thái đơn hàng ID $id: " . $e->getMessage());
+        return false;
     }
+}
 
     public function createOrderDetail($data)
     {

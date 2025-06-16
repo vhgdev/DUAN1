@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-	<title>LAPTOP 8386</title>
+	<title>FUNPHONE</title>
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -135,7 +135,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h3 class="breadcrumb-header">Checkout</h3>
+					<h3 class="breadcrumb-header">XÁC NHẬN ĐƠN HÀNG</h3>
 					<ul class="breadcrumb-tree">
 						<li><a href="#">Home</a></li>
 						<li class="active">Checkout</li>
@@ -160,7 +160,7 @@
 							<table class="table table-bordered">
 								<thead>
 									<tr>
-										<th scope="col">#</th>
+										<th scope="col">#ID</th>
 										<th scope="col">Hình ảnh</th>
 										<th scope="col">Tên sản phẩm</th>
 										<th scope="col">Giá</th>
@@ -187,6 +187,9 @@
 						<div class="order-col">
 							<div>
 								<h4><strong>Tổng tiền</strong></h4>
+							</div><br>
+							<div>
+								<td colspan="2" class="text-success">Giảm giá: <?= number_format($discount) ?> VNĐ</td>
 							</div><br>
 							<div>
 								<h2 style="color: #D9534F"><?= number_format($sumPrice) ?> VNĐ</h2><strong class="order-total"></strong>

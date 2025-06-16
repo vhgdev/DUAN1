@@ -53,7 +53,9 @@
 					<?php if (isset($_SESSION['user'])) : ?>
 						<li><a href="<?= ROOT_URL_ . '?ctl=logout' ?>"><i class="fa fa-user-o"></i> Đăng xuất</a></li>
 						<li><a href="<?= ROOT_URL_ . '?ctl=list-order' ?>"><i class="fa fa-user-o"></i> Lịch sử đơn hàng</a></li>
+						<li><a href="<?= ROOT_URL_ . '?ctl=change-password' ?>"><i class="fa fa-key"></i> Đổi mật khẩu</a></li>
 					<?php else : ?>
+						
 
 						<li>
 							<a href="<?= ROOT_URL_ . '?ctl=login' ?>"><i class="fa fa-user-o"></i> Đăng nhập</a>
