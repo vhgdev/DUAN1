@@ -41,9 +41,20 @@ class AuthController{
                 $_SESSION['user'] = $user;
                 
                 // Nếu role = 1, vào admin, và ngược lại vào trang chủ
-                if ($user['role'] == 'admin'){
-                    header("location: " . ADMIN_URL);
-                } header("location: " . ROOT_URL_);
+              if (password_verify($password, $user['password'])) {
+    // Tải lại thông tin mới nhất từ DB
+    $latestUser = (new User)->find($user['id']);
+
+    $_SESSION['user'] = $latestUser;
+
+    if ($latestUser['role'] === 'admin') {
+        header("location: " . ADMIN_URL);
+    } else {
+        header("location: " . ROOT_URL_);
+    }
+    exit;
+}
+
 
                } else {
                 $error = "Email hoặc mật khẩu không đúng";

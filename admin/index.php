@@ -1,8 +1,9 @@
 <?php
 session_start();
-
 // Require files
 require_once __DIR__ . "/../env.php";
+require_once __DIR__ . "/../middlewares/AuthMiddleware.php";
+check_admin();
 require_once __DIR__ . "/../common/function.php";
 
 // Require models
