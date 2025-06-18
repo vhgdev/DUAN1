@@ -1,20 +1,30 @@
 <?php
+require_once 'models/Product.php';
+require_once 'models/Category.php';
+require_once 'models/Comment.php';
+require_once 'controllers/CartController.php';
 
 class ProductController
 {
     public function index()
     {
-        //lấy id
-        $id = $_GET['id'];
-        //lấy sản phẩm theo danh mục id
+        // Lấy id
+        $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+        if ($id <= 0) {
+            $_SESSION['error'] = "Danh mục không hợp lệ.";
+            header("Location: " . ROOT_URL_ . "?ctl=home");
+            exit();
+        }
+
+        // Lấy sản phẩm theo danh mục id
         $products = (new Product)->listProductInCategory($id);
 
-        //Lấy tên danh mục
-        $title = $products[0]['cate_name'] ?? '';
+        // Lấy tên danh mục
+        $title = !empty($products) ? $products[0]['cate_name'] : '';
 
         $categories = (new Category)->all();
 
-        // Lưu thông tin URI VÀO SESSION
+        // Lưu thông tin URI vào SESSION
         $_SESSION['URI'] = $_SERVER['REQUEST_URI'];
 
         return view(
@@ -24,49 +34,96 @@ class ProductController
     }
     
     // Chi tiết sản phẩm 
-    public function show() {
-        $id = $_GET['id']; //id sản phẩm
+    public function show()
+    {
+        // Lấy id sản phẩm
+        $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
-        $product = (new Product)->find($id);
-
-        //Thêm comment
-        if($_SERVER['REQUEST_METHOD'] === "POST"){
-            $data = $_POST;
-            //Thêm product_id và user_id
-            $data['product_id'] = $id;
-            $data['user_id'] = $_SESSION['user']['id'];
-            (new Comment) ->create($data);
+        // Kiểm tra id hợp lệ
+        if ($id <= 0) {
+            $_SESSION['error'] = "Sản phẩm không hợp lệ.";
+            header("Location: " . ROOT_URL_ . "?ctl=home");
+            exit();
         }
 
+        // Lấy chi tiết sản phẩm
+        $product = (new Product)->find($id);
+        if (!$product) {
+            $_SESSION['error'] = "Sản phẩm không tồn tại.";
+            header("Location: " . ROOT_URL_ . "?ctl=home");
+            exit();
+        }
+
+        // Thêm bình luận và đánh giá
+        if ($_SERVER['REQUEST_METHOD'] === "POST") {
+            if (!isset($_SESSION['user'])) {
+                $_SESSION['error'] = "Vui lòng đăng nhập để bình luận.";
+                header("Location: " . ROOT_URL_ . "?ctl=login");
+                exit();
+            }
+
+            $data = $_POST;
+            // Thêm product_id, user_id và rating
+            $data['product_id'] = $id;
+            $data['user_id'] = $_SESSION['user']['id'];
+            $data['rating'] = isset($data['rating']) ? (int)$data['rating'] : 0;
+
+            // Kiểm tra dữ liệu hợp lệ
+            if ($data['rating'] >= 1 && $data['rating'] <= 5 && !empty($data['content'])) {
+                (new Comment)->create($data);
+                $_SESSION['success'] = "Bình luận và đánh giá đã được gửi.";
+            } else {
+                $_SESSION['error'] = "Vui lòng chọn số sao (1-5) và nhập nội dung bình luận.";
+            }
+            header("Location: " . $_SERVER['REQUEST_URI']);
+            exit();
+        }
+
+        // Lấy danh sách danh mục
         $categories = (new Category)->all();
 
+        // Lấy tiêu đề
         $title = $product['name'] ?? "";
 
-        //Danh sách sản phẩm
+        // Danh sách sản phẩm liên quan
         $productReleads = (new Product)->listProductReload($product['category_id'], $id);
         
-        //Lưu thông tin url
+        // Lưu thông tin URL
         $_SESSION['URI'] = $_SERVER['REQUEST_URI'];
 
+        // Lấy tổng số lượng trong giỏ hàng
         $_SESSION['totalQuantity'] = (new CartController)->totalQuantityInCart();
-        // Lấy danh sách commit
+
+        // Lấy danh sách bình luận
         $comments = (new Comment)->listCommentInProduct($id);
+
+        // Lấy thống kê đánh giá
+        $stats = (new Comment)->getRatingStats($id);
+
+        // Truyền dữ liệu vào view
         return view(
             'clients.products.detail',
-            compact('product','categories','title','productReleads', 'comments')
+            compact('product', 'categories', 'title', 'productReleads', 'comments', 'stats')
         );
     }
 
     public function list()
     {
-        $id = $_GET['id'];
+        $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+        if ($id <= 0) {
+            $_SESSION['error'] = "Danh mục không hợp lệ.";
+            header("Location: " . ROOT_URL_ . "?ctl=home");
+            exit();
+        }
+
         $products = (new Product)->listProductInCategory($id);
 
-        $category_name = ( new Category ) -> find($id)['cate_name'];
+        $category_name = (new Category)->find($id)['cate_name'] ?? '';
 
-        $categories = ( new Category )-> all();
+        $categories = (new Category)->all();
         $title = $category_name;
 
         return view('clients.products.list', compact('products', 'category_name', 'title', 'categories'));
     }
 }
+?>

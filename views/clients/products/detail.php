@@ -6,9 +6,9 @@
 	<div class="section">
 		<!-- container -->
 		<div class="container">
-            <div>
-                <h1>Chi tiết sản phẩm</h1>
-            </div>
+			<div>
+				<h1>Chi tiết sản phẩm</h1>
+			</div>
 
 			<!-- row -->
 			<div class="row">
@@ -76,19 +76,19 @@
 							<?php endif  ?>
 						</div>
 						<p><?= $product['description'] ?></p>
-								<hr>
+						<hr>
 
 
 
 						<div class="add-to-cart">
-<div class="qty-label">
-    Số lượng
-    <div class="input-number">
-        <input type="number" id="quantity" name="quantity" value="1" min="1" max="100" required>
-        <span class="qty-up">+</span>
-        <span class="qty-down">-</span>
-    </div>
-</div>
+							<div class="qty-label">
+								Số lượng
+								<div class="input-number">
+									<input type="number" id="quantity" name="quantity" value="1" min="1" max="100" required>
+									<span class="qty-up">+</span>
+									<span class="qty-down">-</span>
+								</div>
+							</div>
 							<a href="<?= ROOT_URL_ .  '?ctl=add-cart&id=' . $product['id'] ?>" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng</a>
 						</div>
 
@@ -136,33 +136,140 @@
 									<!-- Reviews Bình luận -->
 									<div class="col-md-6">
 										<div id="reviews">
-											<?php foreach($comments as $comment): ?>
-											<ul class="reviews">
-												<li>
-													<div class="review-heading">
-														<h5 class="name"><?= $comment['fullname']?></h5>
-														<p class="date"><?= date('d-m-Y H:i:s', strtotime($comment['created_at']))?></p>
-													</div>
-													<div class="review-body">
-														<p><?= $comment['content']?></p>
-													</div>
-												</li>
-											</ul>
+											<?php foreach ($comments as $comment): ?>
+												<ul class="reviews">
+													<li>
+														<div class="review-heading">
+															<h5 class="name"><?= $comment['fullname'] ?></h5>
+															<p class="date"><?= date('d-m-Y H:i:s', strtotime($comment['created_at'])) ?></p>
+														</div>
+														<div class="review-body">
+															<p><?= $comment['content'] ?></p>
+														</div>
+													</li>
+												</ul>
 											<?php endforeach ?>
-											
+
 										</div>
 									</div>
 									<!-- /Reviews -->
 
-									<!-- Review Form -->
-									<?php if (isset($_SESSION['user'])): ?>
-										<form action="" method="post">
-											<textarea name="content" rows="3" cols="60" require id="content" placeholder="Đóng góp bình luận của bạn nhé <3"></textarea><br><br>
-											<button type="submit" class="btn btn-danger">Gửi</button>
-										</form>
-									<?php else: ?>
-										<div>Bạn cần <b><a href="<?= ROOT_URL_ . '?ctl=login'?>"></a></b> để bình luận</div>
-									<?php endif; ?>
+									<!-- tab3 -->
+									<div id="tab3" class="tab-pane fade in">
+										<div class="row">
+											<!-- Rating -->
+											<div class="col-md-3">
+												<div id="rating">
+													<div class="rating-avg">
+														<span><?= number_format($stats['avg_rating'], 1) ?></span>
+														<div class="rating-stars">
+															<?php
+															$avgRating = round($stats['avg_rating']);
+															for ($i = 1; $i <= 5; $i++) {
+																echo $i <= $avgRating ? '<i class="fa fa-star"></i>' : '<i class="fa fa-star-o"></i>';
+															}
+															?>
+														</div>
+													</div>
+													<ul class="rating">
+														<?php
+														$ratings = [
+															5 => $stats['five_star'],
+															4 => $stats['four_star'],
+															3 => $stats['three_star'],
+															2 => $stats['two_star'],
+															1 => $stats['one_star']
+														];
+														$totalRatings = array_sum($ratings);
+														foreach ($ratings as $star => $count) {
+															$width = $totalRatings > 0 ? ($count / $totalRatings * 100) : 0;
+														?>
+															<li>
+																<div class="rating-stars">
+																	<?php
+																	for ($i = 1; $i <= 5; $i++) {
+																		echo $i <= $star ? '<i class="fa fa-star"></i>' : '<i class="fa fa-star-o"></i>';
+																	}
+																	?>
+																</div>
+																<div class="rating-progress">
+																	<div style="width: <?= $width ?>%;"></div>
+																</div>
+																<span class="sum"><?= $count ?></span>
+															</li>
+														<?php
+														}
+														?>
+													</ul>
+												</div>
+											</div>
+											<!-- /Rating -->
+
+											<!-- Reviews Bình luận -->
+											<div class="col-md-6">
+												<div id="reviews">
+													<?php if (!empty($comments)): ?>
+														<?php foreach ($comments as $comment): ?>
+															<ul class="reviews">
+																<li>
+																	<div class="review-heading">
+																		<h5 class="name"><?= htmlspecialchars($comment['fullname']) ?></h5>
+																		<p class="date"><?= date('d-m-Y H:i:s', strtotime($comment['created_at'])) ?></p>
+																		<div class="rating-stars">
+																			<?php
+																			for ($i = 1; $i <= 5; $i++) {
+																				echo $i <= $comment['rating'] ? '<i class="fa fa-star"></i>' : '<i class="fa fa-star-o"></i>';
+																			}
+																			?>
+																		</div>
+																	</div>
+																	<div class="review-body">
+																		<p><?= htmlspecialchars($comment['content']) ?></p>
+																	</div>
+																</li>
+															</ul>
+														<?php endforeach; ?>
+													<?php else: ?>
+														<p>Chưa có bình luận nào.</p>
+													<?php endif; ?>
+												</div>
+											</div>
+											<!-- /Reviews -->
+
+											<!-- Review Form -->
+											<?php if (isset($_SESSION['user'])): ?>
+												<div class="col-md-3">
+													<div id="review-form">
+														<?php if (isset($_SESSION['error'])): ?>
+															<p style="color: red;"><?= $_SESSION['error'] ?></p>
+															<?php unset($_SESSION['error']); ?>
+														<?php endif; ?>
+														<?php if (isset($_SESSION['success'])): ?>
+															<p style="color: green;"><?= $_SESSION['success'] ?></p>
+															<?php unset($_SESSION['success']); ?>
+														<?php endif; ?>
+														<form action="" method="post">
+															<textarea name="content" rows="3" cols="60" required placeholder="Viết bình luận của bạn..."></textarea>
+															<div class="input-rating">
+																<span>Đánh giá của bạn: </span>
+																<div class="stars">
+																	<?php for ($i = 1; $i <= 5; $i++): ?>
+																		<input id="star<?= $i ?>" name="rating" value="<?= $i ?>" type="radio" required>
+																		<label for="star<?= $i ?>"></label>
+																	<?php endfor; ?>
+																</div>
+															</div>
+															<button type="submit" class="primary-btn">Gửi</button>
+														</form>
+													</div>
+												</div>
+											<?php else: ?>
+												<div>Bạn cần <b><a href="<?= ROOT_URL_ . '?ctl=login' ?>">đăng nhập</a></b> để bình luận và đánh giá</div>
+											<?php endif; ?>
+											<!-- /Review Form -->
+										</div>
+									</div>
+									<!-- /tab3 -->
 
 								</div>
 							</div>
