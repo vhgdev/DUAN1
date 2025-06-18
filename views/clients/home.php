@@ -17,7 +17,6 @@
 
 
 <!-- NỘI DUNG TRANG CHỦ -->
-<!-- Ví dụ: slide, danh sách sản phẩm,... -->
 
 
 <!-- SECTION -->
@@ -55,9 +54,14 @@
 
   <div class="row banner-container">
     <div class="banner-container">
-      <img class="banner-slide" src="./images/banner1.jpg" alt="Banner 1">
-      <img class="banner-slide" src="./images/banner2.jpg" alt="Banner 2">
-      <img class="banner-slide" src="./images/banner3.jpg" alt="Banner 3">
+      <img class="banner-slide" src="./images/banner1.png" alt="Banner 1">
+      <img class="banner-slide" src="./images/banner2.png" alt="Banner 2">
+      <img class="banner-slide" src="./images/banner3.png" alt="Banner 3">
+      <img class="banner-slide" src="./images/banner4.png" alt="Banner 4">
+      <img class="banner-slide" src="./images/banner5.png" alt="Banner 5">
+      <img class="banner-slide" src="./images/banner6.jpg" alt="Banner 6">
+      <img class="banner-slide" src="./images/banner7.jpg" alt="Banner 7">
+      <img class="banner-slide" src="./images/banner8.png" alt="Banner 8">
     </div>
   </div>
 </div>
