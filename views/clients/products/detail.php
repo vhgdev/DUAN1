@@ -101,7 +101,7 @@
 					<div id="product-tab">
 						<!-- product tab nav -->
 						<ul class="tab-nav">
-							<li class="active"><a data-toggle="tab" href="#tab1">Mô tả</a></li>
+							<li class="active"><a data-toggle="tab" href="#tab1">Mô tả sản phẩm</a></li>
 							<li><a data-toggle="tab" href="#tab3">Bình luận</a></li>
 						</ul>
 						<!-- /product tab nav -->
@@ -157,9 +157,8 @@
 									<!-- Review Form -->
 									<?php if (isset($_SESSION['user'])): ?>
 										<form action="" method="post">
-											<textarea name="content" rows="3" cols="60" require id="content" placeholder="Đóng góp bình luận của bạn nhé <3"></textarea>
-											<br>
-											<button type="submit">Gửi</button>
+											<textarea name="content" rows="3" cols="60" require id="content" placeholder="Đóng góp bình luận của bạn nhé <3"></textarea><br><br>
+											<button type="submit" class="btn btn-danger">Gửi</button>
 										</form>
 									<?php else: ?>
 										<div>Bạn cần <b><a href="<?= ROOT_URL_ . '?ctl=login'?>"></a></b> để bình luận</div>
