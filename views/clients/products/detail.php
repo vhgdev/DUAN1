@@ -307,8 +307,8 @@
 		}
 
 		.star-rating label.bi {
-        transition: all 0.2s ease;
-    }
+			transition: all 0.2s ease;
+		}
 	</style>
 
 	<script>

@@ -108,16 +108,17 @@
                     <i class="fas fa-tags"></i><span>Mã giảm giá</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?= ADMIN_URL . '?ctl=list-comment' ?>">
+                    <i class="fas fa-tags"></i><span>Bình luận khách hàng</span>
+                </a>
+            </li>
         </ul>
     </div>
     <div class="content">
         <nav class="navbar navbar-top">
             <div class="container-fluid">
                 <h1>QUẢN LÝ WEBSITE - ADMIN</h1>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Tìm kiếm..." aria-label="Search" name="keyword">
-                    <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
-                </form>
             </div>
         </nav>
         <div class="container-fluid mt-4">

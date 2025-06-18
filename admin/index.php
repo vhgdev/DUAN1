@@ -13,12 +13,15 @@ require_once __DIR__ . "/../models/Product.php";
 require_once __DIR__ . "/../models/User.php";
 require_once __DIR__ . "/../models/Order.php";
 require_once __DIR__ . "/../models/Coupon.php";
+require_once __DIR__ . "/../models/Comment.php";
+
 
 // Require controllers
 require_once __DIR__ . "/../controllers/admin/AdminProductController.php";
 require_once __DIR__ . "/../controllers/admin/AdminCategoryController.php";
 require_once __DIR__ . "/../controllers/admin/DashboardController.php";
 require_once __DIR__ . "/../controllers/admin/AdminCouponController.php";
+require_once __DIR__ . "/../controllers/admin/AdminCommentController.php";
 require_once __DIR__ . "/../controllers/AuthController.php";
 require_once __DIR__ . "/../controllers/OrderController.php";
 
@@ -27,6 +30,7 @@ $ctl = $_GET['ctl'] ?? 'dashboard';
 
 // Xử lý điều hướng
 try {
+    error_log("Route được gọi: $ctl");  
     match ($ctl) {
         'dashboard' => view('admin.dashboard'),
         'listsp' => (new AdminProductController())->index(),
@@ -55,6 +59,10 @@ try {
         'edit-coupon' => (new AdminCouponController())->edit(),
         'update-coupon' => (new AdminCouponController())->update(),
         'delete-coupon' => (new AdminCouponController())->delete(),
+
+
+        'list-comment' => (new AdminCommentController())->index(),
+        'delete-comment' => (new AdminCommentController())->delete(),
 
         default => view('admin.404'), // Trang lỗi 404 nếu không khớp
     };

@@ -1,6 +1,6 @@
 <?php
 class Comment extends BaseModel
-{
+{   
     // Hiển thị bình luận theo sản phẩm
     public function listCommentInProduct($product_id)
     {
@@ -16,7 +16,7 @@ class Comment extends BaseModel
     // Hiển thị các sản phẩm có bình luận
     public function listProductHasComments()
     {
-        $sql = "SELECT p.id, p.name, COUNT(c.id) 'count' 
+        $sql = "SELECT p.id, p.name, COUNT(c.id) as count 
                 FROM products p 
                 JOIN comments c ON p.id = c.product_id 
                 GROUP BY p.id, p.name";
@@ -63,5 +63,35 @@ class Comment extends BaseModel
             'one_star' => 0
         ];
     }
+
+    // Tìm kiếm bình luận theo từ khóa
+    public function searchComments($keyword)
+    {
+        $sql = "SELECT c.id, c.product_id, c.user_id, u.fullname, c.rating, c.content, c.created_at, p.name as product_name
+                FROM comments c
+                LEFT JOIN users u ON c.user_id = u.id
+                LEFT JOIN products p ON c.product_id = p.id
+                WHERE c.rating > 0 AND (c.content LIKE :keyword OR u.fullname LIKE :keyword OR p.name LIKE :keyword)
+                ORDER BY c.created_at DESC";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute(['keyword' => "%$keyword%"]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Xóa bình luận
+public function delete($id)
+{
+    try {
+        $sql = "DELETE FROM comments WHERE id = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute(['id' => $id]);
+        $rowCount = $stmt->rowCount();
+        error_log("Xóa bình luận ID: $id, Số hàng bị xóa: $rowCount");
+        return $rowCount > 0;
+    } catch (PDOException $e) {
+        error_log("Lỗi xóa bình luận ID $id: " . $e->getMessage());
+        throw $e;
+    }
+}
 }
 ?>
