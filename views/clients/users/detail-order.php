@@ -41,7 +41,7 @@ include_once ROOT_DIR . "views/clients/header.php";
                 <h5 class="text-primary">Thông tin khách hàng</h5>
                 <div class="row">
                     <div class="col-md-6">
-                        <p><strong>Họ tến:</strong> <?= $order['fullname'] ?? 'Không xác định' ?></p>
+                        <p><strong>Họ tên:</strong> <?= $order['fullname'] ?? 'Không xác định' ?></p>
                         <p><strong>Email:</strong> <?= $order['email'] ?? 'Không xác định' ?></p>
                     </div>
                     <div class="col-md-6">
