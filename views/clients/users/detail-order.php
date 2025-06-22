@@ -38,7 +38,7 @@ include_once ROOT_DIR . "views/clients/header.php";
 
             <!-- Thông tin khách hàng -->
             <div class="mb-4">
-                <h5 class="text-primary">Thông tin khách háng</h5>
+                <h5 class="text-primary">Thông tin khách hàng</h5>
                 <div class="row">
                     <div class="col-md-6">
                         <p><strong>Họ tên:</strong> <?= $order['fullname'] ?? 'Không xác định' ?></p>
