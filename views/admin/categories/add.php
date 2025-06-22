@@ -6,7 +6,7 @@
             <div class="card shadow">
                 <div class="card-header d-flex justify-content-between align-items-center p-3 bg-primary text-white">
                     <h2 class="mb-0">THÊM DANH MỤC</h2>
-                    <a href="<?= ADMIN_URL . '?ctl=list-category' ?>" class="btn btn-light btn-sm">Quay lại danh sách</a>
+                    <a href="<?= ADMIN_URL . '?ctl=listdm' ?>" class="btn btn-light btn-sm">Quay lại danh sách</a>
                 </div>
                 <div class="card-body">
                     <div class="row">

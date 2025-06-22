@@ -48,7 +48,7 @@
                     <!-- Checkbox -->
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="" id="checkbox" checked />
-                        <label class="form-check-label" for="form2Example31"> Remember me </label>
+                        <label class="form-check-label" for="form2Example31"> Nhớ mật khẩu </label>
                     </div>
                 </div>
             </div>

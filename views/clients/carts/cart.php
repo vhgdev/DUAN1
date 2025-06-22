@@ -5,10 +5,12 @@
 
     <!-- Hiển thị thông báo -->
     <?php if (isset($_SESSION['success'])): ?>
-        <div class="alert alert-success text-center"><?= htmlspecialchars($_SESSION['success']); unset($_SESSION['success']); ?></div>
+        <div class="alert alert-success text-center"><?= htmlspecialchars($_SESSION['success']);
+                                                        unset($_SESSION['success']); ?></div>
     <?php endif; ?>
     <?php if (isset($_SESSION['error'])): ?>
-        <div class="alert alert-danger text-center"><?= htmlspecialchars($_SESSION['error']); unset($_SESSION['error']); ?></div>
+        <div class="alert alert-danger text-center"><?= htmlspecialchars($_SESSION['error']);
+                                                    unset($_SESSION['error']); ?></div>
     <?php endif; ?>
 
     <!-- Form nhập mã giảm giá -->
@@ -60,33 +62,33 @@
                     <?php endforeach; ?>
                 </tbody>
                 <tfoot>
-    <tr>
-        <td colspan="5" class="text-end fw-bold">Tổng tiền:</td>
-        <td colspan="2" class="fw-bold text-danger"><?= number_format($totalPrice) ?> VNĐ</td>
-    </tr>
+                    <tr>
+                        <td colspan="5" class="text-end fw-bold">Tổng tiền:</td>
+                        <td colspan="2" class="fw-bold text-danger"><?= number_format($totalPrice) ?> VNĐ</td>
+                    </tr>
 
-    <?php if (!empty($coupon)): ?>
-        <tr>
-            <td colspan="5" class="text-end text-success">Giảm giá (<?= htmlspecialchars($coupon['code']) ?>):</td>
-            <td colspan="2" class="text-success">-<?= number_format($discount) ?> VNĐ</td>
-        </tr>
-        <tr>
-            <td colspan="5" class="text-end fw-bold">Tổng thanh toán:</td>
-            <td colspan="2" class="fw-bold text-danger"><?= number_format($finalPrice) ?> VNĐ</td>
-        </tr>
-    <?php endif; ?>
-</tfoot>
-
-
+                    <?php if (!empty($coupon)): ?>
+                        <tr>
+                            <td colspan="5" class="text-end text-success">Giảm giá (<?= htmlspecialchars($coupon['code']) ?>):</td>
+                            <td colspan="2" class="text-success">-<?= number_format($discount) ?> VNĐ</td>
+                        </tr>
+                        <tr>
+                            <td colspan="5" class="text-end fw-bold">Tổng thanh toán:</td>
+                            <td colspan="2" class="fw-bold text-danger"><?= number_format($finalPrice) ?> VNĐ</td>
+                        </tr>
+                    <?php endif; ?>
+                </tfoot>
             </table>
         </div>
+
 
         <!-- Nút hành động -->
         <div class="d-flex justify-content-between align-items-center mt-4">
             <a href="<?= htmlspecialchars(ROOT_URL_) ?>" class="btn btn-danger btn-sm">
                 <i class="bi bi-arrow-clockwise"></i> Tiếp tục mua sắm
             </a>
-            <div class="d-flex gap-2">
+            
+            <div class="d-flex gap-2"><br>
                 <button type="submit" class="btn btn-warning">
                     <i class="bi bi-arrow-repeat"></i> Cập nhật giỏ hàng
                 </button>
@@ -95,6 +97,8 @@
                 </a>
             </div>
         </div>
+
+
     </form>
 </div>
 
