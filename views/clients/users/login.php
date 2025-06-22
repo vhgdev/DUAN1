@@ -26,7 +26,7 @@
 
         <!-- Form đăng nhập -->
         
-        <br><h3 class="text-center mb-4" style="color: #D10024;">Đăng nhấp</h3>
+        <br><h3 class="text-center mb-4" style="color: #D10024;">Đăng nhập</h3>
 
         <form action="<?= ROOT_URL_ . '?ctl=login' ?>" method="POST">
 
