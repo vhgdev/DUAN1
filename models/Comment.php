@@ -38,6 +38,7 @@ class Comment extends BaseModel
             'rating' => $data['rating']
         ]);
     }
+    
 
     // Lấy thống kê đánh giá
     public function getRatingStats($product_id)

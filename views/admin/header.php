@@ -108,6 +108,11 @@
                     <i class="fas fa-tags"></i><span>Mã giảm giá</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?= ADMIN_URL . '?ctl=list-comment' ?>">
+                    <i class="fas fa-tags"></i><span>Quản lÝ bình luận</span>
+                </a>
+            </li>
         </ul>
     </div>
     <div class="content">
