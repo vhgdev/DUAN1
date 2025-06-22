@@ -47,7 +47,6 @@
 					<li><a href="#"> +868882950</a></li>
 					<li><a href="#"></i> fptedu@email.com</a></li>
 					<li><a href="#"></i> Trịnh Văn Bô</a></li>
-					<li><a href="#"></i> Trịnh Văn Bô</a></li>
 				</ul>
 				<ul class="header-links pull-right" style="color: white;">
 					<?= $_SESSION['user']['fullname'] ?? ''  ?>
