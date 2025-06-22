@@ -41,12 +41,6 @@
                                                     <a href="<?= ADMIN_URL . '?ctl=delete-coupon&id=' . htmlspecialchars($coupon['id'] ?? '') ?>" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa mã giảm giá này?')">
                                                         <i class="bi bi-trash"></i> Xoá
                                                     </a>
-                                                    <a href="<?= ADMIN_URL . '?ctl=delete-coupon&id=' . htmlspecialchars($coupon['id'] ?? '') ?>" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa mã giảm giá này?')">
-                                                        <i class="bi bi-trash"></i> Xoá
-                                                    </a>
-                                                    <a href="<?= ADMIN_URL . '?ctl=delete-coupon&id=' . htmlspecialchars($coupon['id'] ?? '') ?>" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa mã giảm giá này?')">
-                                                        <i class="bi bi-trash"></i> Xoá
-                                                    </a>
                                                 </div>
                                             </td>
                                         </tr>

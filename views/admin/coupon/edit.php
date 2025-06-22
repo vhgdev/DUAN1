@@ -37,14 +37,6 @@
                                     <button type="submit" class="btn btn-primary btn-sm">Cập nhật</button>
                                     <a href="<?= ADMIN_URL . '?ctl=list-coupon' ?>" class="btn btn-secondary btn-sm">Hủy</a>
                                 </div>
-                                  <div class="mb-3">
-                                    <button type="submit" class="btn btn-primary btn-sm">Cập nhật</button>
-                                    <a href="<?= ADMIN_URL . '?ctl=list-coupon' ?>" class="btn btn-secondary btn-sm">Hủy</a>
-                                </div>
-                                  <div class="mb-3">
-                                    <button type="submit" class="btn btn-primary btn-sm">Cập nhật</button>
-                                    <a href="<?= ADMIN_URL . '?ctl=list-coupon' ?>" class="btn btn-secondary btn-sm">Hủy</a>
-                                </div>
                             </form>
                         </div>
                     </div>
