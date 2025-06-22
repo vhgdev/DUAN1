@@ -27,18 +27,6 @@
                                         <input class="form-check-input" type="radio" name="type" id="type_accessory" value="0">
                                         <label class="form-check-label" for="type_accessory">Phụ kiện</label>
                                     </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="type" id="type_accessory" value="0">
-                                        <label class="form-check-label" for="type_accessory">Phụ kiện</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="type" id="type_accessory" value="0">
-                                        <label class="form-check-label" for="type_accessory">Phụ kiện</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="type" id="type_accessory" value="0">
-                                        <label class="form-check-label" for="type_accessory">Phụ kiện</label>
-                                    </div>
                                 </div>
 
                                 <div class="mb-3">
