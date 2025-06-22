@@ -18,6 +18,7 @@ require_once __DIR__ . "/controllers/SearchController.php";
 require_once __DIR__ . "/controllers/OrderController.php";
 
 
+
 $ctl = $_GET['ctl'] ?? '';
 
 
@@ -26,18 +27,22 @@ match ($ctl) {
     '', 'home' => (new HomeController)->index(),
     'category' => (new ProductController)->list(),
     'detail' => (new ProductController)->show(),
-   'register' => (new AuthController)->register(),
-     'login' =>( new AuthController)->login(),
-    'logout' => (new AuthController)->logout(), 
-     'add-cart' => (new CartController)->addToCart(),
-     'view-cart' => (new CartController)->viewCart(),
-     'delete-cart' => (new CartController)->deleteProductInCart(),
-     'update-cart' => (new CartController)->updateCart(),
-     'search' => (new SearchController)->search(),
-   'view-checkout' => ( new CartController)->viewCheckOut(),
-      'checkout' => ( new CartController)->checkOut(),
-      'success' => (new CartController)->success(),
-     'list-order' => (new OrderController)->showOrderUser(),
-    'order-detail-user' => (new OrderController)->detailOrderUser(),
+    'register' => (new AuthController)->register(),
+    'login' =>( new AuthController)->login(),
+    'logout' => (new AuthController)->logout(),
+    'add-cart' => (new CartController)->addToCart(),
+    'view-cart' => (new CartController)->viewCart(),
+    'delete-cart' => (new CartController)->deleteProductInCart(),
+    'update-cart' => (new CartController)->updateCart(),
+    'search' => (new SearchController)->search(),
+    'view-checkout' => (new CartController)->viewCheckOut(),
+    'checkout' => (new CartController)->checkOut(),
+    'success' => (new CartController)->success(),
+    'list-order' => (new OrderController)->showOrderUser(),
+    'apply-coupon' => (new CartController)->applyCoupon(),
+    'change-password' => (new AuthController)->changePasswordForm(),
+    'handle-change-password' => (new AuthController)->handleChangePassword(),
+
+
     default => view( 'errors.404'),
 };
