@@ -2,29 +2,25 @@
 require_once 'models/Product.php';
 require_once 'models/Category.php';
 require_once 'models/Comment.php';
+require_once 'models/Rating.php';
 require_once 'controllers/CartController.php';
 
-class ProductController
+
+class RatingController
 {
     public function index()
     {
         // Lấy id
-        $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
-        if ($id <= 0) {
-            $_SESSION['error'] = "Danh mục không hợp lệ.";
-            header("Location: " . ROOT_URL_ . "?ctl=home");
-            exit();
-        }
-
+        $id = $_GET['id'];
         // Lấy sản phẩm theo danh mục id
         $products = (new Product)->listProductInCategory($id);
 
         // Lấy tên danh mục
-        $title = !empty($products) ? $products[0]['cate_name'] : '';
+        $title = $products[0]['cate_name'] ?? '';
 
         $categories = (new Category)->all();
 
-        // Lưu thông tin URI vào SESSION
+        // Lưu thông tin URI VÀO SESSION
         $_SESSION['URI'] = $_SERVER['REQUEST_URI'];
 
         return view(
@@ -109,16 +105,10 @@ class ProductController
 
     public function list()
     {
-        $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
-        if ($id <= 0) {
-            $_SESSION['error'] = "Danh mục không hợp lệ.";
-            header("Location: " . ROOT_URL_ . "?ctl=home");
-            exit();
-        }
-
+        $id = $_GET['id'];
         $products = (new Product)->listProductInCategory($id);
 
-        $category_name = (new Category)->find($id)['cate_name'] ?? '';
+        $category_name = (new Category)->find($id)['cate_name'];
 
         $categories = (new Category)->all();
         $title = $category_name;

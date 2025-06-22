@@ -40,27 +40,27 @@ class AdminProductController
 
         //Hàm thêm dữ liệu vào database
     public function store()
-    {
-        $data = $_POST;
+{
+    $data = $_POST;
 
-        //Nếu người dùng không nhập ảnh
-        $image = "";
-        //Nếu người dùng nhập ảnh
+    $image = "";
+
+    // Kiểm tra nếu người dùng đã upload file
+    if (isset($_FILES['image']) && $_FILES['image']['size'] > 0) {
         $file = $_FILES['image'];
-        if ($file['size'] > 0) {
-            $image = "images/" . $file['name'];
-            //upload ảnh
-            move_uploaded_file($file['tmp_name'], ROOT_DIR . $image);
-        }
-        $data['image'] = $image;
-
-        // Lưu vào CSDL 
-        (new Product) -> create($data);
-
-        $_SESSION['message'] = "Thêm dữ liệu thành công";
-        header("location: " . ADMIN_URL . "?ctl=listsp");
-        die;
+        $image = "images/" . $file['name'];
+        move_uploaded_file($file['tmp_name'], ROOT_DIR . $image);
     }
+
+    $data['image'] = $image;
+
+    (new Product)->create($data);
+
+    $_SESSION['message'] = "Thêm dữ liệu thành công";
+    header("location: " . ADMIN_URL . "?ctl=listsp");
+    die;
+}
+
 
     // Hiển thị form cập nhật
 
@@ -73,29 +73,27 @@ class AdminProductController
     }
 
     public function update()
-    {
-        $data = $_POST;
+{
+    $data = $_POST;
 
-        //Lấy thông tin sản phẩm cũ
-        $product = new Product;
-        $item = $product->find($data['id']);
-        //Nếu người dùng không nhập ảnh thì lấy lại ảnh cũ
-        $image = $item['image'];
-        //Nếu người dùng nhập ảnh
+    $product = new Product;
+    $item = $product->find($data['id']);
+
+    $image = $item['image']; // Giữ ảnh cũ
+
+    if (isset($_FILES['image']) && $_FILES['image']['size'] > 0) {
         $file = $_FILES['image'];
-        if ($file['size'] > 0) {
-            $image = "images/" . $file['name'];
-            //upload ảnh
-            move_uploaded_file($file['tmp_name'], ROOT_DIR . $image);
-        }
-        $data['image'] = $image;
-
-        //Update
-        $product->update($data['id'], $data);
-        //di chuyển về lại trang edit
-        header("location: " . ADMIN_URL . "?ctl=editsp&id=" . $data['id']);
-        die;
+        $image = "images/" . $file['name'];
+        move_uploaded_file($file['tmp_name'], ROOT_DIR . $image);
     }
+
+    $data['image'] = $image;
+
+    $product->update($data['id'], $data);
+    header("location: " . ADMIN_URL . "?ctl=editsp&id=" . $data['id']);
+    die;
+}
+
 
     //Xóa sản phẩm
     public function delete()

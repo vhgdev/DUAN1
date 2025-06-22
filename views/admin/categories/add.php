@@ -6,7 +6,7 @@
             <div class="card shadow">
                 <div class="card-header d-flex justify-content-between align-items-center p-3 bg-primary text-white">
                     <h2 class="mb-0">THÊM DANH MỤC</h2>
-                    <a href="<?= ADMIN_URL . '?ctl=list-category' ?>" class="btn btn-light btn-sm">Quay lại danh sách</a>
+                    <a href="<?= ADMIN_URL . '?ctl=listdm' ?>" class="btn btn-light btn-sm">Quay lại danh sách</a>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -22,6 +22,18 @@
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="type" id="type_phone" value="1" checked>
                                         <label class="form-check-label" for="type_phone">Điện thoại</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="type" id="type_accessory" value="0">
+                                        <label class="form-check-label" for="type_accessory">Phụ kiện</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="type" id="type_accessory" value="0">
+                                        <label class="form-check-label" for="type_accessory">Phụ kiện</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="type" id="type_accessory" value="0">
+                                        <label class="form-check-label" for="type_accessory">Phụ kiện</label>
                                     </div>
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="type" id="type_accessory" value="0">
