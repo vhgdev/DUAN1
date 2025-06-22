@@ -38,6 +38,18 @@ class Comment extends BaseModel
             'rating' => $data['rating']
         ]);
     }
+    public function create($data)
+    {
+        $sql = "INSERT INTO comments (user_id, product_id, content, rating, created_at) 
+                VALUES (:user_id, :product_id, :content, :rating, NOW())";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([
+            'user_id' => $data['user_id'],
+            'product_id' => $data['product_id'],
+            'content' => $data['content'],
+            'rating' => $data['rating']
+        ]);
+    }
 
     // Lấy thống kê đánh giá
     public function getRatingStats($product_id)
