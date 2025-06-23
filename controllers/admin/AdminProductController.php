@@ -33,9 +33,10 @@ class AdminProductController
 
     //Hàm thêm dữ liệu vào database
     public function store()
-    {
-        $data = $_POST;
+{
+    $data = $_POST;
 
+<<<<<<< HEAD
         //Nếu người dùng không nhập ảnh
         $image = ""; // gán image là chuỗi rỗng
         //Nếu người dùng nhập ảnh
@@ -54,7 +55,26 @@ class AdminProductController
 
         header("location: " . ADMIN_URL . "?ctl=listsp");
         die;
+=======
+    $image = "";
+
+    // Kiểm tra nếu người dùng đã upload file
+    if (isset($_FILES['image']) && $_FILES['image']['size'] > 0) {
+        $file = $_FILES['image'];
+        $image = "images/" . $file['name'];
+        move_uploaded_file($file['tmp_name'], ROOT_DIR . $image);
+>>>>>>> c40894db8305e76c41e6498e7e73f97e26cd015e
     }
+
+    $data['image'] = $image;
+
+    (new Product)->create($data);
+
+    $_SESSION['message'] = "Thêm dữ liệu thành công";
+    header("location: " . ADMIN_URL . "?ctl=listsp");
+    die;
+}
+
 
     // Hiển thị form cập nhật
 
@@ -70,9 +90,10 @@ class AdminProductController
     }
 
     public function update()
-    {
-        $data = $_POST;
+{
+    $data = $_POST;
 
+<<<<<<< HEAD
         //Lấy thông tin sản phẩm cũ
         $product = new Product;
 
@@ -96,7 +117,26 @@ class AdminProductController
         //di chuyển về lại trang edit
         header("location: " . ADMIN_URL . "?ctl=editsp&id=" . $data['id']);
         die;
+=======
+    $product = new Product;
+    $item = $product->find($data['id']);
+
+    $image = $item['image']; // Giữ ảnh cũ
+
+    if (isset($_FILES['image']) && $_FILES['image']['size'] > 0) {
+        $file = $_FILES['image'];
+        $image = "images/" . $file['name'];
+        move_uploaded_file($file['tmp_name'], ROOT_DIR . $image);
+>>>>>>> c40894db8305e76c41e6498e7e73f97e26cd015e
     }
+
+    $data['image'] = $image;
+
+    $product->update($data['id'], $data);
+    header("location: " . ADMIN_URL . "?ctl=editsp&id=" . $data['id']);
+    die;
+}
+
 
     //Xóa sản phẩm
     public function delete()

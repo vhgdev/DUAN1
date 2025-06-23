@@ -110,7 +110,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="<?= ADMIN_URL . '?ctl=list-comment' ?>">
-                    <i class="fas fa-tags"></i><span>Bình luận khách hàng</span>
+                    <i class="fas fa-tags"></i><span>Quản lý bình luận</span>
                 </a>
             </li>
         </ul>

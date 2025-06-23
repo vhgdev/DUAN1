@@ -13,7 +13,7 @@ function view($path_view, $data = [])
 
     include_once ROOT_DIR . "/views/$path_view.php";
 
-}   
+}
 
 
 // chuyển đổi trạng thái đơn hàng

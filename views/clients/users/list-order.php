@@ -1,46 +1,77 @@
-<?php include_once ROOT_DIR . "views/clients/header.php" ?>
+<?php include_once ROOT_DIR . "views/clients/header.php"; ?>
 
-<div class="container">
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="card-header bg-dark text-white text-center">
+            <h4>LỊCH SỬ ĐƠN HÀNG</h4>
+        </div>
 
-  <div>
-    <!-- thông tin khách hàng -->
-    <div class="mb-4"><br>
-      <h3>THÔNG TIN KHÁCH HÀNG</h3>
-      <p><strong>Họ tên: </strong><?= $user['fullname'] ?></p>
-      <p><strong>Email: </strong><?= $user['email'] ?></p>
-      <p><strong>Điện thoại: </strong><?= $user['phone'] ?></p>
-      <p><strong>Địa chỉ: </strong><?= $user['address'] ?></p>
-    </div>
-  </div>
+        <div class="card-body">
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">#ID</th>
-        <th scope="col">Phương thức thanh toán</th>
-        <th scope="col">Trạng thái</th>
-        <th scope="col">Tổng tiền</th>
-        <th scope="col">Ngày mua</th>
-        <th scope="col">Hành động</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php foreach ($orders as $order): ?>
-        <tr>
-          <th scope="row"><?= $order['id'] ?></th>
-          <td><?= $order['payment_method'] ?></td>
-          <td><?= getOrderStatus($order['status']) ?></td>
-          <td><?= number_format($order['total_price']) ?>VNĐ</td>
-          <td><?= date('d-m-Y H:i:s', strtotime($order['created_at'])) ?></td>
-          <td>
-              <form action="" method="post">
-                <button class="btn btn-danger">Hủy đơn hàng</button>
-              </form>
-          </td>
-        </tr>
-      <?php endforeach ?>
-    </tbody>
-  </table>
-</div>
+            <!-- Thông tin khách hàng -->
+            <div class="mb-4">
+                <h5 class="text-primary">Thông tin khách hàng</h5>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>Họ tên:</strong> <?= $user['fullname'] ?></p>
+                        <p><strong>Email:</strong> <?= $user['email'] ?></p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Điện thoại:</strong> <?= $user['phone'] ?></p>
+                        <p><strong>Địa chỉ:</strong> <?= $user['address'] ?></p>
+                    </div>
+                </div>
+                <hr>
+            </div>
 
-<?php include_once ROOT_DIR . "views/clients/footer.php";
+            <!-- Danh sách đơn hàng -->
+            <div>
+                <h5 class="text-primary">Danh sách đơn hàng</h5>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover align-middle">
+                        <thead class="table-light text-center">
+                            <tr>
+                                <th>#ID</th>
+                                <th>Phương thức thanh toán</th>
+                                <th>Trạng thái</th>
+                                <th>Tổng tiền</th>
+                                <th>Ngày mua</th>
+                                <th>Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if (!empty($orders)) : ?>
+                                <?php foreach ($orders as $order) : ?>
+                                    <tr class="text-center">
+                                        <td>#<?= $order['id'] ?></td>
+                                        <td><?= htmlspecialchars($order['payment_method']) ?></td>
+                                        <td>
+                                            <span class="badge 
+                                                <?= $order['status'] == 0 ? 'bg-warning' : ($order['status'] == 1 ? 'bg-info' : ($order['status'] == 2 ? 'bg-success' : 'bg-danger')) ?>">
+                                                <?= getOrderStatus($order['status']) ?>
+                                            </span>
+                                        </td>
+                                        <td><?= number_format($order['total_price']) ?> VNĐ</td>
+                                        <td><?= date('d-m-Y H:i:s', strtotime($order['created_at'])) ?></td>
+                                        <td>
+<a href="<?= ROOT_URL_ . '?ctl=order-detail-user&id=' . $order['id'] ?>" class="btn btn-sm btn-primary">
+                                                Chi tiết
+                                            </a>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php else : ?>
+                                <tr>
+                                    <td colspan="6" class="text-center text-muted">Bạn chưa có đơn hàng nào.</td>
+                                </tr>
+                            <?php endif; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div> <!-- end card-body -->
+    </div> <!-- end card -->
+</div> <!-- end container -->
+
+<?php include_once ROOT_DIR . "views/clients/footer.php"; ?>

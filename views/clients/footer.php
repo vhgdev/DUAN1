@@ -12,7 +12,7 @@
 								<p>Sản phẩm dự thi môn DỰ ÁN 1</p>
 								<ul class="footer-links">
 									<li><a href="#"><i class="fa fa-map-marker"></i>Trịnh Văn Bô</a></li>
-									<li><a href="#"><i class="fa fa-phone"></i>+123456789</a></li>
+									<li><a href="#"><i class="fa fa-phone"></i>0988567765</a></li>
 									<li><a href="#"><i class="fa fa-envelope-o"></i>fptedu@email.com</a></li>
 								</ul>
 							</div>

@@ -42,6 +42,7 @@ match ($ctl) {
     'apply-coupon' => (new CartController)->applyCoupon(),
     'change-password' => (new AuthController)->changePasswordForm(),
     'handle-change-password' => (new AuthController)->handleChangePassword(),
+    'order-detail-user' => (new OrderController)->detailOrderUser(),
 
 
     default => view( 'errors.404'),
