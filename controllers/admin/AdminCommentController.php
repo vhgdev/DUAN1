@@ -16,14 +16,18 @@ class AdminCommentController
 
     // Hiển thị danh sách bình luận
     public function index()
-    {
+    {   
+        // Lấy từ khóa tìm kiếm
         $keyword = isset($_GET['keyword']) ? trim($_GET['keyword']) : '';
 
+        // Tạo model Comment
         $commentModel = new Comment();
         if ($keyword) {
+            // Tìm kiếm bình luận theo từ khóa
             $comments = $commentModel->searchComments($keyword);
         } else {
-            // Lấy danh sách sản phẩm có bình luận để hiển thị hoặc lọc
+
+            // Lấy danh sách sản phẩm có bình luận để hiển thị
             $products = $commentModel->listProductHasComments();
             $comments = [];
             foreach ($products as $product) {
@@ -46,13 +50,17 @@ class AdminCommentController
     // Xóa bình luận
     public function delete()
     {
+        // Kiểm tra id bình luận
         if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+            // ID không tồn tại
             $_SESSION['error'] = 'ID bình luận không hợp lệ';
             header('Location: ' . ADMIN_URL . '?ctl=list-comment');
             exit;
         }
 
         $commentId = (int)$_GET['id'];
+
+        // Khởi tạo model
         $commentModel = new Comment();
         try {
             error_log("Đang xóa bình luận ID: $commentId");
@@ -69,6 +77,8 @@ class AdminCommentController
             error_log("Lỗi hệ thống ID $commentId: " . $e->getMessage());
         }
 
+
+        // Chuyển hướng về trang danh sách bình luận
         header('Location: ' . ADMIN_URL . '?ctl=list-comment');
         exit;
     }

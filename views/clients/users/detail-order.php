@@ -95,7 +95,7 @@ include_once ROOT_DIR . "views/clients/header.php";
 
                 <?php if ($order['status'] == 1): ?>
                     <form method="post" onsubmit="return confirm('Bạn có chắc chắn muốn hủy đơn hàng này không?')">
-                        <button type="submit" class="btn btn-outline-danger">Hủy đơn hàng</button>
+                        <button type="submit" class="btn btn-danger">Hủy đơn hàng</button>
                     </form>
                 <?php endif; ?>
             </div>

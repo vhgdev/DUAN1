@@ -12,6 +12,7 @@ class AdminCategoryController
     //         return header("location: " . ROOT_URL_);
     //     }
     // }
+
     public function __construct()
 {   
     $user = $_SESSION['user'] ?? [];
@@ -38,8 +39,12 @@ class AdminCategoryController
     public function store()
     {
         $data = $_POST;
+
+        // Lưu dữ liệu vào bảng Category
         (new Category)->create($data);
+
         $_SESSION['message'] = "Thêm dữ liệu thành công";
+
         header('location: ' . ADMIN_URL . '?ctl=listdm');
         die;
     }
@@ -47,15 +52,22 @@ class AdminCategoryController
     public function edit()
     {
         $id = $_GET['id'];
+
+        // Lấy thông tin danh mục theo ID
         $category = (new Category)->find($id);
+
         //Lấy session thông báo
         $message = $_SESSION['message'] ?? '';
-        unset($_SESSION['message']); //xóa session
+
+        unset($_SESSION['message']); // Xóa session
+
         return view('admin.categories.edit', compact('category', 'message'));
     }
     public function update()
     {
         $data = $_POST;
+
+        // Cập nhật dữ liệu trong CSDL
         (new Category)->update($data['id'], $data);
 
         $_SESSION['message'] = "Cập nhật dữ liệu thành công";
@@ -65,6 +77,8 @@ class AdminCategoryController
     public function delete()
     {
         $id = $_GET['id'];
+
+        // Xóa bản ghi trong bảng Categories
         (new Category)->delete($id);
         $_SESSION['message'] = "Xóa dữ liệu thành công";
         header("location: " . ADMIN_URL . "?ctl=listdm");
