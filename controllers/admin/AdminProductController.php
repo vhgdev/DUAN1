@@ -6,45 +6,38 @@ require_once __DIR__ . '/../../env.php';
 class AdminProductController
 {
 
-    // public function __construct()
-    // {   
-    //     $user = $_SESSION['user'] ?? [];
-    //     if (!$user || $user['role'] != 'admin') {
-    //         return header("location: " . ROOT_URL_);
-    //     }
-    // }
     public function __construct()
-{   
-    $user = $_SESSION['user'] ?? [];
-    if (!$user || $user['role'] != 'admin') {
-        header("Location: " . ROOT_URL_);
-        exit; // Dừng chương trình ngay lập tức
+    {
+        $user = $_SESSION['user'] ?? [];
+        if (!$user || $user['role'] != 'admin') {
+            header("Location: " . ROOT_URL_);
+            exit; // Dừng chương trình ngay lập tức
+        }
     }
-}
 
 
     public function index()
     {
         $products = (new Product)->all();
-        
 
         return view('admin.products.list', compact('products'));
     }
 
-        //Hàm hiển thị form thêm
+    //Hàm hiển thị form thêm
     public function create()
     {
         $categories = (new Category)->all();
+
         return view('admin.products.add', compact('categories'));
     }
 
-        //Hàm thêm dữ liệu vào database
+    //Hàm thêm dữ liệu vào database
     public function store()
     {
         $data = $_POST;
 
         //Nếu người dùng không nhập ảnh
-        $image = "";
+        $image = ""; // gán image là chuỗi rỗng
         //Nếu người dùng nhập ảnh
         $file = $_FILES['image'];
         if ($file['size'] > 0) {
@@ -55,9 +48,10 @@ class AdminProductController
         $data['image'] = $image;
 
         // Lưu vào CSDL 
-        (new Product) -> create($data);
+        (new Product)->create($data);
 
         $_SESSION['message'] = "Thêm dữ liệu thành công";
+
         header("location: " . ADMIN_URL . "?ctl=listsp");
         die;
     }
@@ -67,8 +61,11 @@ class AdminProductController
     public function edit()
     {
         $id = $_GET['id'];
+
         $product = (new Product)->find($id);
+
         $categories = (new Category)->all();
+
         return view('admin.products.edit', compact('product', 'categories'));
     }
 
@@ -78,9 +75,12 @@ class AdminProductController
 
         //Lấy thông tin sản phẩm cũ
         $product = new Product;
+
         $item = $product->find($data['id']);
+
         //Nếu người dùng không nhập ảnh thì lấy lại ảnh cũ
         $image = $item['image'];
+
         //Nếu người dùng nhập ảnh
         $file = $_FILES['image'];
         if ($file['size'] > 0) {
@@ -92,6 +92,7 @@ class AdminProductController
 
         //Update
         $product->update($data['id'], $data);
+
         //di chuyển về lại trang edit
         header("location: " . ADMIN_URL . "?ctl=editsp&id=" . $data['id']);
         die;

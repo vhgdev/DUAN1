@@ -4,13 +4,6 @@ require_once __DIR__ . '/../../env.php';
 
 class DashboardController {
 
-    // public function __construct()
-    // {   
-    //     $user = $_SESSION['user'] ?? [];
-    //     if (!$user || $user['role'] != 'admin') {
-    //         return header("location: " . ROOT_URL_);
-    //     }
-    // }
     public function __construct()
 {   
     $user = $_SESSION['user'] ?? [];
@@ -19,7 +12,6 @@ class DashboardController {
         exit; // Dừng chương trình ngay lập tức
     }
 }
-
 
     public function index() 
     {

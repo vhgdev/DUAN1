@@ -10,7 +10,7 @@
                         <form action="<?= ADMIN_URL . '?ctl=index' ?>" method="GET" class="d-flex">
                             <input type="hidden" name="ctl" value="index">
                             <input type="text" name="keyword" class="form-control me-2" placeholder="Tìm kiếm bình luận..." id="searchInput" value="<?= htmlspecialchars($keyword ?? '') ?>">
-                            <button type="submit" class="btn btn-light btn-sm">Tìm</button>
+                            <button type="submit" class="btn btn-light btn-sm">Tìm kiếm</button>
                         </form>
                     </div>
                 </div>

@@ -44,32 +44,32 @@ class AdminCommentController
     }
 
     // Xóa bình luận
-public function delete()
-{
-    if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
-        $_SESSION['error'] = 'ID bình luận không hợp lệ';
+    public function delete()
+    {
+        if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+            $_SESSION['error'] = 'ID bình luận không hợp lệ';
+            header('Location: ' . ADMIN_URL . '?ctl=list-comment');
+            exit;
+        }
+
+        $commentId = (int)$_GET['id'];
+        $commentModel = new Comment();
+        try {
+            error_log("Đang xóa bình luận ID: $commentId");
+            if ($commentModel->delete($commentId)) {
+                $_SESSION['success'] = 'Xóa bình luận thành công';
+            } else {
+                $_SESSION['error'] = 'Không tìm thấy bình luận với ID ' . $commentId;
+            }
+        } catch (PDOException $e) {
+            $_SESSION['error'] = 'Lỗi cơ sở dữ liệu: ' . $e->getMessage();
+            error_log("Lỗi xóa bình luận ID $commentId: " . $e->getMessage());
+        } catch (Exception $e) {
+            $_SESSION['error'] = 'Lỗi hệ thống: ' . $e->getMessage();
+            error_log("Lỗi hệ thống ID $commentId: " . $e->getMessage());
+        }
+
         header('Location: ' . ADMIN_URL . '?ctl=list-comment');
         exit;
     }
-
-    $commentId = (int)$_GET['id'];
-    $commentModel = new Comment();
-    try {
-        error_log("Đang xóa bình luận ID: $commentId");
-        if ($commentModel->delete($commentId)) {
-            $_SESSION['success'] = 'Xóa bình luận thành công';
-        } else {
-            $_SESSION['error'] = 'Không tìm thấy bình luận với ID ' . $commentId;
-        }
-    } catch (PDOException $e) {
-        $_SESSION['error'] = 'Lỗi cơ sở dữ liệu: ' . $e->getMessage();
-        error_log("Lỗi xóa bình luận ID $commentId: " . $e->getMessage());
-    } catch (Exception $e) {
-        $_SESSION['error'] = 'Lỗi hệ thống: ' . $e->getMessage();
-        error_log("Lỗi hệ thống ID $commentId: " . $e->getMessage());
-    }
-
-    header('Location: ' . ADMIN_URL . '?ctl=list-comment');
-    exit;
-}
 }

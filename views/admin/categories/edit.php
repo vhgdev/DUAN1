@@ -13,7 +13,7 @@
                         <div class="alert alert-success text-center p-3">
                             <?= htmlspecialchars($message) ?>
                         </div>
-                    <?php endif ?>
+                    <?php endif ?>  
                     <div class="row">
                         <div class="col-12">
                             <form action="<?= ADMIN_URL . '?ctl=updatedm' ?>" method="post">
